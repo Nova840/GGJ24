@@ -10,7 +10,13 @@ public class Player : MonoBehaviour {
     private Transform rotationPoint;
 
     [SerializeField]
-    private float moveSpeed, getHitStrength;
+    private float moveSpeed;
+
+    [SerializeField]
+    private float getHitStrength;
+
+    [SerializeField]
+    private float rotateSpeed;
 
     [SerializeField]
     private float gravity;
@@ -27,6 +33,8 @@ public class Player : MonoBehaviour {
     [SerializeField]
     private float rotatePointSmoothSpeed;
 
+    private int playerIndex;
+
     private Camera mainCamera;
     private CharacterActor characterActor;
 
@@ -41,10 +49,14 @@ public class Player : MonoBehaviour {
         mainCamera = Camera.main;
     }
 
+    public void Initialize(int playerIndex) {
+        this.playerIndex = playerIndex;
+    }
+
     private void Update() {
         Move();
-        if (Gamepad.current.buttonWest.wasPressedThisFrame) {
-            ApplyRotation(Vector3.right, .5f, getHitStrength);
+        if (Gamepad.all[playerIndex].buttonWest.wasPressedThisFrame) {
+            ApplyHit(Vector3.right, .5f, getHitStrength);
         }
     }
 
@@ -54,14 +66,15 @@ public class Player : MonoBehaviour {
     }
 
     private void Move() {
-        Vector2 inputVector = Gamepad.current.leftStick.value;
+        Vector2 inputVector = Gamepad.all[playerIndex].leftStick.value;
         inputVector = Vector2.ClampMagnitude(inputVector, 1);
         Vector3 moveVectorXZ = mainCamera.transform.TransformDirection(new Vector3(inputVector.x, 0, inputVector.y));
         moveVectorXZ.y = 0;
         moveVectorXZ = moveVectorXZ.normalized * inputVector.magnitude * moveSpeed;
 
         if (characterActor.IsGrounded) {
-            if (Gamepad.current.buttonSouth.wasPressedThisFrame) {
+            if (Gamepad.all[playerIndex].buttonSouth.wasPressedThisFrame) {
+                characterActor.ForceNotGrounded();
                 currentYVelocity = Mathf.Sqrt(-jumpHeight * -2 * gravity);//formula to calculate velocity from jump height
             } else {
                 currentYVelocity = -2;
@@ -77,12 +90,12 @@ public class Player : MonoBehaviour {
 
         characterActor.Velocity = new Vector3(totalMoveXZ.x, currentYVelocity, totalMoveXZ.z);
 
-        if (smoothMoveVectorXZ != Vector3.zero) {
-            characterActor.Rotation = Quaternion.LookRotation(smoothMoveVectorXZ, Vector3.up);
+        if (moveVectorXZ != Vector3.zero) {
+            characterActor.Rotation = Quaternion.Slerp(characterActor.Rotation, Quaternion.LookRotation(moveVectorXZ), rotateSpeed * Time.deltaTime);
         }
     }
 
-    public void ApplyRotation(Vector3 hitDirection, float rotateStrength, float moveStrength) {
+    public void ApplyHit(Vector3 hitDirection, float rotateStrength, float moveStrength) {
         hitDirection.y = 0;
         hitDirection = hitDirection.normalized;
         if (hitDirection == Vector3.zero) return;

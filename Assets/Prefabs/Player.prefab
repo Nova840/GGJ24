@@ -239,7 +239,8 @@ MonoBehaviour:
   rotationPoint: {fileID: 1889420083355420610}
   moveSpeed: 5
   getHitStrength: 20
-  gravity: 9.8
+  rotateSpeed: 20
+  gravity: 20
   jumpHeight: 2
   acceleration: 20
   hitRecovery: 50
