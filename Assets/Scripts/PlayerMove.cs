@@ -10,6 +10,9 @@ public class PlayerMove : MonoBehaviour {
     private Transform rotationPoint;
 
     [SerializeField]
+    private GameObject renderersContainer;
+
+    [SerializeField]
     private float moveSpeed;
 
     [SerializeField]
@@ -30,6 +33,9 @@ public class PlayerMove : MonoBehaviour {
     [SerializeField]
     private float rotatePointSmoothSpeed;
 
+    [SerializeField]
+    private float respawnDelay;
+
     private Player player;
     private Camera mainCamera;
     private CharacterActor characterActor;
@@ -40,6 +46,25 @@ public class PlayerMove : MonoBehaviour {
 
     private Vector3 rotationPointUpDirection;
 
+    public bool Respawning { get; private set; }
+    public void SetRespawning() => SetRespawning(true);
+    private void SetRespawning(bool respawning) {
+        Respawning = respawning;
+        renderersContainer.SetActive(!respawning);
+        characterActor.ColliderComponent.enabled = !respawning;
+        if (respawning) {
+            characterActor.Teleport(Vector3.up * 5);//placeholder
+            currentYVelocity = 0;
+            smoothMoveVectorXZ = Vector3.zero;
+            hitMoveVelocityXZ = Vector3.zero;
+            StartCoroutine(SetRespawningCoroutine());
+        }
+    }
+    private IEnumerator SetRespawningCoroutine() {
+        yield return new WaitForSeconds(respawnDelay);
+        SetRespawning(false);
+    }
+
     private void Awake() {
         player = GetComponent<Player>();
         characterActor = GetComponent<CharacterActor>();
@@ -47,7 +72,9 @@ public class PlayerMove : MonoBehaviour {
     }
 
     private void Update() {
-        Move();
+        if (!Respawning) {
+            Move();
+        }
     }
 
     private void LateUpdate() {

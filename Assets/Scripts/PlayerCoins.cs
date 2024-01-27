@@ -58,6 +58,7 @@ public class PlayerCoins : MonoBehaviour {
             coinPointLastGrounded = coinSpawnpoint.position;
         }
         if (transform.position.y <= killYDepth) {
+            player.PlayerMove.SetRespawning();
             coinPointLastFell = coinSpawnpoint.position;
             LoseCoinsByFall(percentCoinsToLoseByFall);
         }
@@ -70,7 +71,7 @@ public class PlayerCoins : MonoBehaviour {
     private IEnumerator LoseCoinsByHitCoroutine(float percentCoinsToLose) {
         int coinsToLose = CoinsToLose(percentCoinsToLose);
         for (int i = 0; i < coinsToLose; i++) {
-            Coin coin = CreateCoin(transform.position);
+            Coin coin = CreateCoin(coinSpawnpoint.position);
 
             Vector3 direction = GetDirection(hitCoinLaunchMinDegrees, hitCoinLaunchMaxDegrees);
             LaunchCoin(coin, direction, hitCoinLaunchSpeed);
@@ -89,7 +90,7 @@ public class PlayerCoins : MonoBehaviour {
             Coin coin = CreateCoin(coinPointLastGrounded);
 
             Vector3 direction = GetDirection(fallCoinLaunchMinDegrees, fallCoinLaunchMaxDegrees);
-            Vector3 fromGroundToPlayerXZ = transform.position - coinPointLastGrounded;
+            Vector3 fromGroundToPlayerXZ = coinPointLastFell - coinPointLastGrounded;
             fromGroundToPlayerXZ.y = 0;
             fromGroundToPlayerXZ = fromGroundToPlayerXZ.normalized;
             if (Vector3.Angle(fromGroundToPlayerXZ, direction) < 90) {

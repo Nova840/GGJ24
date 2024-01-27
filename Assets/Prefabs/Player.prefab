@@ -316,6 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationPoint: {fileID: 1889420083355420610}
+  renderersContainer: {fileID: 4856166136659511068}
   moveSpeed: 5
   rotateSpeed: 20
   gravity: 20
@@ -323,6 +324,7 @@ MonoBehaviour:
   acceleration: 20
   hitRecovery: 50
   rotatePointSmoothSpeed: 5
+  respawnDelay: 3
 --- !u!114 &2133795424575179326
 MonoBehaviour:
   m_ObjectHideFlags: 0
