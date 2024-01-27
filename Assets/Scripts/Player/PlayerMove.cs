@@ -83,6 +83,13 @@ public class PlayerMove : MonoBehaviour {
         rotationPoint.rotation = Quaternion.LookRotation(rotationPointUpDirection, transform.forward) * Quaternion.Euler(-90, 180, 0);
     }
 
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Obstacle")) {
+            //print("here");
+            characterActor.ForceNotGrounded();
+        }
+    }
+
     private void Move() {
         Vector2 inputVector = Gamepad.all[player.PlayerIndex].leftStick.value;
         inputVector = Vector2.ClampMagnitude(inputVector, 1);

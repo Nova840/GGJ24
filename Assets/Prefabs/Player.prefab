@@ -211,7 +211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8bca3f4e5fe75448294763d12bc775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runAnimationBlendMultiplier: 1
 --- !u!114 &196932660966453365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,7 +252,7 @@ MonoBehaviour:
   slopeLimit: 55
   stableLayerMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 567
   allowCharactersAsStableSurfaces: 1
   preventUnstableClimbing: 1
   preventBadSteps: 1
@@ -268,7 +267,7 @@ MonoBehaviour:
   supportDynamicGround: 1
   dynamicGroundLayerMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 567
   rotateForwardDirection: 1
   maxGroundVelocityChange: 30
   inheritedGroundPlanarVelocityThreshold: 2
@@ -286,11 +285,11 @@ MonoBehaviour:
   canPushDynamicRigidbodies: 1
   pushableRigidbodyLayerMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 567
   applyWeightToGround: 1
   applyWeightLayerMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 567
   weightGravity: 9.8
 --- !u!1 &8074940094568207672
 GameObject:
