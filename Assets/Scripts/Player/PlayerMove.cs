@@ -54,7 +54,7 @@ public class PlayerMove : MonoBehaviour {
         renderersContainer.SetActive(!respawning);
         characterActor.ColliderComponent.enabled = !respawning;
         if (respawning) {
-            characterActor.Teleport(player.GameManager.GetRandomPlayerSpawnpoint());//placeholder
+            characterActor.Teleport(player.GameManager.GetRandomPlayerSpawnpoint());
             currentYVelocity = 0;
             smoothMoveVectorXZ = Vector3.zero;
             hitMoveVelocityXZ = Vector3.zero;
