@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -19,6 +20,8 @@ public class PlayerPunch : MonoBehaviour {
     private float percentCoinsToLose;
 
     private Player player;
+
+    public event Action OnPunch;
 
     private void Awake() {
         player = GetComponent<Player>();
@@ -44,5 +47,6 @@ public class PlayerPunch : MonoBehaviour {
             p.PlayerMove.ApplyHit(p.transform.position - transform.position, punchTilt, punchMove);
             p.PlayerCoins.LoseCoinsByHit(percentCoinsToLose);
         }
+        OnPunch?.Invoke();
     }
 }

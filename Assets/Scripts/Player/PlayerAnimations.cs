@@ -1,9 +1,13 @@
 using Lightbug.CharacterControllerPro.Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimations : MonoBehaviour {
+
+    [SerializeField]
+    private float kickBlendInTime;
 
     private Player player;
     private CharacterActor characterActor;
@@ -13,6 +17,11 @@ public class PlayerAnimations : MonoBehaviour {
         player = GetComponent<Player>();
         characterActor = GetComponent<CharacterActor>();
         animator = GetComponentInChildren<Animator>();
+        player.PlayerPunch.OnPunch += OnPunch;
+    }
+
+    private void OnPunch() {
+        animator.CrossFadeInFixedTime("Kick", kickBlendInTime, 0);
     }
 
     private void Update() {
