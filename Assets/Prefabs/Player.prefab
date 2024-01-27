@@ -53,6 +53,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &3540247151645331141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7825163852782143657}
+  m_Layer: 6
+  m_Name: Coin Spawnpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7825163852782143657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540247151645331141}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 938508905471336665}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3759082330664367099
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +288,7 @@ Transform:
   m_Children:
   - {fileID: 1889420083355420610}
   - {fileID: 1337845799361422979}
+  - {fileID: 7825163852782143657}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4832885826177464
@@ -306,6 +338,7 @@ MonoBehaviour:
   punchTrigger: {fileID: 6485063663302159492}
   punchTilt: 0.5
   punchMove: 20
+  percentCoinsToLose: 0.25
 --- !u!114 &107463724804216036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -318,6 +351,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ffaac1790e2e6040969327afd9e2aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinPrefab: {fileID: 7913229049932097562, guid: d4f8ac1e9c8feec428dfa870f2e17659,
+    type: 3}
+  coinSpawnpoint: {fileID: 7825163852782143657}
+  coinLaunchMinDegrees: 5
+  coinLaunchMaxDegrees: 20
+  coinLaunchSpeed: 5
+  coinLaunchInterval: 0.25
 --- !u!114 &196932660966453365
 MonoBehaviour:
   m_ObjectHideFlags: 0
