@@ -14,6 +14,7 @@ public class PlayerMove : MonoBehaviour {
 
     [SerializeField]
     private float moveSpeed;
+    public float MoveSpeed => moveSpeed;
 
     [SerializeField]
     private float rotateSpeed;

@@ -8,11 +8,12 @@ public class Player : MonoBehaviour {
     public PlayerMove PlayerMove { get; private set; }
     public PlayerPunch PlayerPunch { get; private set; }
     public PlayerCoins PlayerCoins { get; private set; }
+    public PlayerAnimations PlayerAnimations { get; private set; }
 
     private void Awake() {
         PlayerMove = GetComponent<PlayerMove>();
         PlayerPunch = GetComponent<PlayerPunch>();
-        PlayerCoins = GetComponent<PlayerCoins>();
+        PlayerAnimations = GetComponent<PlayerAnimations>();
     }
 
     public void Initialize(int playerIndex) {
