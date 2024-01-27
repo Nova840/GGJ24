@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerText : MonoBehaviour {
+public class StartPlayerText : MonoBehaviour {
 
     [SerializeField, Range(0, 3)]
     private int playerIndex;
@@ -15,6 +14,10 @@ public class PlayerText : MonoBehaviour {
     private void Awake() {
         text = GetComponent<TMP_Text>();
         GameInfo.OnPlayerChange += OnPlayerChange;
+    }
+
+    private void Start() {
+        UpdateText();
     }
 
     private void OnPlayerChange(int playerIndex, bool value) {

@@ -10,8 +10,14 @@ public class Spawnpoint : MonoBehaviour {
     [SerializeField, Range(0, 3)]
     private int playerIndex;
 
+    private void Awake() {
+        if (!GameInfo.StartSceneHasLoaded && playerIndex == 0) {
+            GameInfo.SetPlayer(playerIndex, true);
+        }
+    }
+
     private void Start() {
-        if (GameInfo.GetPlayer(playerIndex) || (!GameInfo.StartSceneHasLoaded && playerIndex == 0)) {
+        if (GameInfo.GetPlayer(playerIndex)) {
             Player player = Instantiate(playerPrefab, transform.position, transform.rotation).GetComponent<Player>();
             player.Initialize(playerIndex);
         }

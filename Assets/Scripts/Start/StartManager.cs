@@ -11,7 +11,7 @@ public class StartManager : MonoBehaviour {
     }
 
     private void Update() {
-        for (int i = 0; i < GameInfo.GetNumPlayers(); i++) {
+        for (int i = 0; i < GameInfo.GetMaxPlayers(); i++) {
             if (Gamepad.all.Count <= i) return;
             if (Gamepad.all[i].buttonSouth.wasPressedThisFrame) {
                 GameInfo.SetPlayer(i, true);

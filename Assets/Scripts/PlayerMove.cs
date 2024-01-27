@@ -48,9 +48,6 @@ public class PlayerMove : MonoBehaviour {
 
     private void Update() {
         Move();
-        if (Gamepad.all[player.PlayerIndex].buttonNorth.wasPressedThisFrame) {
-            ApplyHit(Vector3.right, .5f, 20);
-        }
     }
 
     private void LateUpdate() {
