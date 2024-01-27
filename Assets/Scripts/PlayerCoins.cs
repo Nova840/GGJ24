@@ -10,8 +10,8 @@ public class PlayerCoins : MonoBehaviour {
         player = GetComponent<Player>();
     }
 
-    private void OnTriggerEnter(Collider other) {
-        Coin coin = other.GetComponent<Coin>();
+    private void OnCollisionEnter(Collision collision) {
+        Coin coin = collision.rigidbody.GetComponent<Coin>();
         if (!coin) return;
 
         coin.PickUp();

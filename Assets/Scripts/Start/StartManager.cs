@@ -8,6 +8,10 @@ public class StartManager : MonoBehaviour {
 
     private void Start() {
         GameInfo.SetStartSceneHasLoaded();
+        for (int i = 0; i < GameInfo.GetMaxPlayers(); i++) {
+            GameInfo.SetPlayer(i, false);
+            GameInfo.SetCoins(i, 0);
+        }
     }
 
     private void Update() {
