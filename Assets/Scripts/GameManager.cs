@@ -11,8 +11,16 @@ public class GameManager : MonoBehaviour {
     private GameObject coinPrefab;
 
     [SerializeField]
+    private GameObject playerPrefab;
+
+    [SerializeField]
     private Transform coinSpawnpointsContainer;
     private List<Transform> coinSpawnpoints = new List<Transform>();
+
+    [SerializeField]
+    private Transform playerSpawnpointsContainer;
+    private List<Transform> playerSpawnpoints = new List<Transform>();
+    public Transform GetRandomPlayerSpawnpoint() => playerSpawnpoints[Random.Range(0, playerSpawnpoints.Count)];
 
     [SerializeField]
     private float totalTime;
@@ -31,15 +39,30 @@ public class GameManager : MonoBehaviour {
     private SpawnCoins[] spawnCoins;
 
     private void Awake() {
+        if (!GameInfo.StartSceneHasLoaded) {
+            GameInfo.SetPlayer(0, true);
+        }
+
         TimeLeft = totalTime;
         foreach (Transform child in coinSpawnpointsContainer) {
             coinSpawnpoints.Add(child);
+        }
+        foreach (Transform child in playerSpawnpointsContainer) {
+            playerSpawnpoints.Add(child);
         }
     }
 
     private void Start() {
         foreach (SpawnCoins sc in spawnCoins) {
             StartCoroutine(CoinSpawnCoroutine(sc));
+        }
+
+        List<Transform> playerSpawns = new List<Transform>(playerSpawnpoints);
+        for (int playerIndex = 0; playerIndex < GameInfo.GetMaxPlayers(); playerIndex++) {
+            if (!GameInfo.GetPlayer(playerIndex)) continue;
+            int randomSpawn = Random.Range(0, playerSpawns.Count);
+            Player player = Instantiate(playerPrefab, playerSpawns[randomSpawn].position, playerSpawns[randomSpawn].rotation).GetComponent<Player>();
+            player.Initialize(playerIndex, this);
         }
     }
 

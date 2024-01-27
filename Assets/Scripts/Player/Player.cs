@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     public int PlayerIndex { get; private set; }
+    public GameManager GameManager { get; private set; }
+
     public PlayerMove PlayerMove { get; private set; }
     public PlayerPunch PlayerPunch { get; private set; }
     public PlayerCoins PlayerCoins { get; private set; }
@@ -17,8 +19,9 @@ public class Player : MonoBehaviour {
         PlayerAnimations = GetComponent<PlayerAnimations>();
     }
 
-    public void Initialize(int playerIndex) {
+    public void Initialize(int playerIndex, GameManager gameManager) {
         PlayerIndex = playerIndex;
+        GameManager = gameManager;
     }
 
 }

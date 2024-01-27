@@ -54,7 +54,7 @@ public class PlayerMove : MonoBehaviour {
         renderersContainer.SetActive(!respawning);
         characterActor.ColliderComponent.enabled = !respawning;
         if (respawning) {
-            characterActor.Teleport(Vector3.up * 5);//placeholder
+            characterActor.Teleport(player.GameManager.GetRandomPlayerSpawnpoint());//placeholder
             currentYVelocity = 0;
             smoothMoveVectorXZ = Vector3.zero;
             hitMoveVelocityXZ = Vector3.zero;
@@ -81,13 +81,6 @@ public class PlayerMove : MonoBehaviour {
     private void LateUpdate() {
         rotationPointUpDirection = Vector3.Slerp(rotationPointUpDirection, Vector3.up, rotatePointSmoothSpeed * Time.deltaTime);
         rotationPoint.rotation = Quaternion.LookRotation(rotationPointUpDirection, transform.forward) * Quaternion.Euler(-90, 180, 0);
-    }
-
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Obstacle")) {
-            //print("here");
-            characterActor.ForceNotGrounded();
-        }
     }
 
     private void Move() {

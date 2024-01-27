@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 25136120}
-  - component: {fileID: 25136121}
   m_Layer: 0
   m_Name: P4 Spawnpoint
   m_TagString: Untagged
@@ -148,28 +147,48 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 25136119}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5.04, y: 0, z: -5.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 179021902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &25136121
-MonoBehaviour:
+--- !u!1 &179021901
+GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 25136119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52de137b34221fe4f931963ea690a300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 7851126847298940672, guid: 2a93c6360032f434ea1b6725b904f291,
-    type: 3}
-  playerIndex: 3
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 179021902}
+  m_Layer: 0
+  m_Name: Player Spawnpoints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &179021902
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179021901}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 216152201}
+  - {fileID: 1463825432}
+  - {fileID: 798997099}
+  - {fileID: 25136120}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,7 +316,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 216152201}
-  - component: {fileID: 216152202}
   m_Layer: 0
   m_Name: P1 Spawnpoint
   m_TagString: Untagged
@@ -313,28 +331,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 216152200}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8.95, y: 0, z: 4.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 179021902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &216152202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 216152200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52de137b34221fe4f931963ea690a300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 7851126847298940672, guid: 2a93c6360032f434ea1b6725b904f291,
-    type: 3}
-  playerIndex: 0
 --- !u!1 &276583469
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +444,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 7913229049932097562, guid: d4f8ac1e9c8feec428dfa870f2e17659,
     type: 3}
+  playerPrefab: {fileID: 7851126847298940672, guid: 2a93c6360032f434ea1b6725b904f291,
+    type: 3}
   coinSpawnpointsContainer: {fileID: 1741974627}
+  playerSpawnpointsContainer: {fileID: 179021902}
   totalTime: 120
   spawnCoins:
   - time: 5
@@ -472,7 +478,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 798997099}
-  - component: {fileID: 798997100}
   m_Layer: 0
   m_Name: P3 Spawnpoint
   m_TagString: Untagged
@@ -488,28 +493,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798997098}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.87, y: 0, z: -6.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 179021902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &798997100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 798997098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52de137b34221fe4f931963ea690a300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 7851126847298940672, guid: 2a93c6360032f434ea1b6725b904f291,
-    type: 3}
-  playerIndex: 2
 --- !u!1 &904357642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,7 +1421,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1463825432}
-  - component: {fileID: 1463825433}
   m_Layer: 0
   m_Name: P2 Spawnpoint
   m_TagString: Untagged
@@ -1447,28 +1436,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463825431}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 8.48, y: 0, z: -3.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 179021902}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1463825433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463825431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52de137b34221fe4f931963ea690a300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 7851126847298940672, guid: 2a93c6360032f434ea1b6725b904f291,
-    type: 3}
-  playerIndex: 1
 --- !u!1 &1532196647
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,7 +1767,7 @@ GameObject:
   - component: {fileID: 1982196347}
   - component: {fileID: 1982196342}
   - component: {fileID: 1982196346}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: Spinning Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2085,10 +2059,7 @@ SceneRoots:
   - {fileID: 1160234427}
   - {fileID: 1921069609}
   - {fileID: 1982196345}
-  - {fileID: 216152201}
-  - {fileID: 1463825432}
-  - {fileID: 798997099}
-  - {fileID: 25136120}
   - {fileID: 1665430511}
   - {fileID: 1399177291}
   - {fileID: 1741974627}
+  - {fileID: 179021902}
