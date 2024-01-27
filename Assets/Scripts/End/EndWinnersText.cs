@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using TMPro;
+using UnityEngine;
+
+public class EndWinnersText : MonoBehaviour {
+
+    [SerializeField]
+    private EndManager endManager;
+
+    private TMP_Text text;
+
+    private void Awake() {
+        text = GetComponent<TMP_Text>();
+    }
+
+    private void Start() {
+        string s = "";
+        endManager.ForEachWinner(playerIndex => {
+            s += $"Player {playerIndex + 1}: {GameInfo.GetCoins(playerIndex)}\n";
+        });
+        s = s.TrimEnd('\n');
+        text.text = s;
+    }
+
+}
