@@ -5,6 +5,9 @@ using UnityEngine;
 
 public static class GameInfo {
 
+    public static bool StartSceneHasLoaded { get; private set; } = false;
+    public static void SetStartSceneHasLoaded() => StartSceneHasLoaded = true;
+
     private static bool[] players = { false, false, false, false };
     public static void SetPlayer(int index, bool value) {
         players[index] = value;

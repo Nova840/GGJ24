@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class StartManager : MonoBehaviour {
 
+    private void Start() {
+        GameInfo.SetStartSceneHasLoaded();
+    }
+
     private void Update() {
         for (int i = 0; i < GameInfo.GetNumPlayers(); i++) {
             if (Gamepad.all.Count <= i) return;
