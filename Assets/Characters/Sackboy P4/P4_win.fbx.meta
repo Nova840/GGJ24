@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: fcbfd62e063874e96bf1139b10deee68
+guid: 8747bb0a2cb5b4909bf03b68f479e66d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sack_boy.001
+    second: {fileID: 2100000, guid: b4e042057336b4f668bd6ac37dfe594a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
