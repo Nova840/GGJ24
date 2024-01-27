@@ -354,10 +354,15 @@ MonoBehaviour:
   coinPrefab: {fileID: 7913229049932097562, guid: d4f8ac1e9c8feec428dfa870f2e17659,
     type: 3}
   coinSpawnpoint: {fileID: 7825163852782143657}
-  coinLaunchMinDegrees: 5
-  coinLaunchMaxDegrees: 20
-  coinLaunchSpeed: 5
+  hitCoinLaunchMinDegrees: 5
+  hitCoinLaunchMaxDegrees: 15
+  fallCoinLaunchMinDegrees: 35
+  fallCoinLaunchMaxDegrees: 55
+  hitCoinLaunchSpeed: 10
+  fallCoinLaunchSpeed: 10
   coinLaunchInterval: 0.25
+  killYDepth: -10
+  percentCoinsToLoseByFall: 0.5
 --- !u!114 &196932660966453365
 MonoBehaviour:
   m_ObjectHideFlags: 0
