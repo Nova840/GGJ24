@@ -3,11 +3,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerAnimations : MonoBehaviour {
 
     [SerializeField]
     private float kickBlendInTime;
+
+    [SerializeField]
+    private float punchBlendInTime;
 
     private Player player;
     private CharacterActor characterActor;
@@ -21,7 +25,11 @@ public class PlayerAnimations : MonoBehaviour {
     }
 
     private void OnPunch() {
-        animator.CrossFadeInFixedTime("Kick", kickBlendInTime, 0);
+        if (Random.Range(0, 2) == 0) {
+            animator.CrossFadeInFixedTime("Punch", punchBlendInTime, 1);
+        } else {
+            animator.CrossFadeInFixedTime("Kick", kickBlendInTime, 0);
+        }
     }
 
     private void Update() {
