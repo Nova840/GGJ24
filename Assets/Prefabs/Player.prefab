@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1622675731270597520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1337845799361422979}
+  - component: {fileID: 6485063663302159492}
+  m_Layer: 6
+  m_Name: Punch Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1337845799361422979
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622675731270597520}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.25, z: 0.75}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 938508905471336665}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6485063663302159492
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622675731270597520}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3759082330664367099
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +64,6 @@ GameObject:
   - component: {fileID: 1504632513509516467}
   - component: {fileID: 8574315084398497452}
   - component: {fileID: 7285607847708120272}
-  - component: {fileID: 1241171690821375606}
   m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
@@ -84,27 +136,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1241171690821375606
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3759082330664367099}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4856166136659511068
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,7 +229,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 938508905471336665}
+  - component: {fileID: 4832885826177464}
   - component: {fileID: 1316851508147080824}
+  - component: {fileID: 2133795424575179326}
   - component: {fileID: 196932660966453365}
   - component: {fileID: 6857095186292006797}
   m_Layer: 6
@@ -222,8 +255,21 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1889420083355420610}
+  - {fileID: 1337845799361422979}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4832885826177464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7851126847298940672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7f1f9a6f3382541aafe285f27b5217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1316851508147080824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,13 +284,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationPoint: {fileID: 1889420083355420610}
   moveSpeed: 5
-  getHitStrength: 20
   rotateSpeed: 20
   gravity: 20
   jumpHeight: 2
   acceleration: 20
   hitRecovery: 50
   rotatePointSmoothSpeed: 5
+--- !u!114 &2133795424575179326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7851126847298940672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d70e2af1f4896e428c62e1e22c1cf33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  punchTrigger: {fileID: 6485063663302159492}
+  punchTilt: 0.5
+  punchMove: 20
 --- !u!114 &196932660966453365
 MonoBehaviour:
   m_ObjectHideFlags: 0

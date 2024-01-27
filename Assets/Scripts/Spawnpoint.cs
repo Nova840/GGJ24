@@ -12,8 +12,8 @@ public class Spawnpoint : MonoBehaviour {
 
     private void Start() {
         if (GameInfo.GetPlayer(playerIndex) || (!GameInfo.StartSceneHasLoaded && playerIndex == 0)) {
-            GameObject player = Instantiate(playerPrefab, transform.position, transform.rotation);
-            player.GetComponent<Player>().Initialize(playerIndex);
+            Player player = Instantiate(playerPrefab, transform.position, transform.rotation).GetComponent<Player>();
+            player.Initialize(playerIndex);
         }
     }
 
