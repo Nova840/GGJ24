@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
     private void Awake() {
         PlayerMove = GetComponent<PlayerMove>();
         PlayerPunch = GetComponent<PlayerPunch>();
+        PlayerCoins = GetComponent<PlayerCoins>();
         PlayerAnimations = GetComponent<PlayerAnimations>();
     }
 
