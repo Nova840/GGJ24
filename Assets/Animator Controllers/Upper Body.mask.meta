@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animator Controllers/Upper Body.mask.meta
 guid: 1742ab5e5bafb7644bb9b782b37c4a64
+========
+guid: 169ad34e72df74689bf39768b48eca7d
+>>>>>>>> 1df4c50 (add obstacle assets):Assets/Obstacles/Asteroids/SM_Asteroid.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 31900000
