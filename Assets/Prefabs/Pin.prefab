@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+  destroyAfterIfNoHit: 10
 --- !u!114 &4711762376257477515
 MonoBehaviour:
   m_ObjectHideFlags: 0
