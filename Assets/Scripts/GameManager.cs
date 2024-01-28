@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -51,6 +52,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private GameObject[] enableWhenSpeech;
 
+    [SerializeField]
+    private TMP_Text speechText;
+
     private void Awake() {
         if (!GameInfo.StartSceneHasLoaded) {
             GameInfo.SetPlayer(0, true);
@@ -86,6 +90,7 @@ public class GameManager : MonoBehaviour {
 
     private IEnumerator SpeechCoroutine(Speech s) {
         yield return new WaitForSeconds(s.time);
+        speechText.text = s.text;
         ToggleSpeech(true);
         yield return new WaitForSeconds(s.duration);
         ToggleSpeech(false);
