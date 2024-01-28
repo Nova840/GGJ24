@@ -16,6 +16,7 @@ public class TimeText : MonoBehaviour {
     }
 
     private void OnTimeLeftChange(float timeLeft) {
-        text.text = Mathf.CeilToInt(timeLeft).ToString();
+        int secondsLeft = Mathf.CeilToInt(timeLeft);
+        text.text = $"{secondsLeft / 60}:{(secondsLeft % 60).ToString("D2")}";
     }
 }
