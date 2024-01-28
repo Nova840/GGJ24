@@ -38,6 +38,19 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private SpawnCoins[] spawnCoins;
 
+    [Serializable]
+    private class Speech {
+        public float time;
+        public float duration;
+        public string text;
+    }
+
+    [SerializeField]
+    private Speech[] speech;
+
+    [SerializeField]
+    private GameObject[] enableWhenSpeech;
+
     private void Awake() {
         if (!GameInfo.StartSceneHasLoaded) {
             GameInfo.SetPlayer(0, true);
@@ -57,12 +70,30 @@ public class GameManager : MonoBehaviour {
             StartCoroutine(CoinSpawnCoroutine(sc));
         }
 
+        ToggleSpeech(false);
+        foreach (Speech s in speech) {
+            StartCoroutine(SpeechCoroutine(s));
+        }
+
         List<Transform> playerSpawns = new List<Transform>(playerSpawnpoints);
         for (int playerIndex = 0; playerIndex < GameInfo.GetMaxPlayers(); playerIndex++) {
             if (!GameInfo.GetPlayer(playerIndex)) continue;
             int randomSpawn = Random.Range(0, playerSpawns.Count);
             Player player = Instantiate(playerPrefab, playerSpawns[randomSpawn].position, playerSpawns[randomSpawn].rotation).GetComponent<Player>();
             player.Initialize(playerIndex, this);
+        }
+    }
+
+    private IEnumerator SpeechCoroutine(Speech s) {
+        yield return new WaitForSeconds(s.time);
+        ToggleSpeech(true);
+        yield return new WaitForSeconds(s.duration);
+        ToggleSpeech(false);
+    }
+
+    private void ToggleSpeech(bool on) {
+        foreach (GameObject g in enableWhenSpeech) {
+            g.SetActive(on);
         }
     }
 
