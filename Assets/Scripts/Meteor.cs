@@ -29,7 +29,7 @@ public class Meteor : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (other.isTrigger || other.GetComponent<Meteor>()) return;
         if (particlesOnHitPrefab) {
-            Instantiate(particlesOnHitPrefab, transform.position, Quaternion.Euler(0, Random.Range(0f, 360f), 0));
+            Instantiate(particlesOnHitPrefab, transform.position, particlesOnHitPrefab.transform.rotation);
         }
         Destroy(gameObject);
     }
