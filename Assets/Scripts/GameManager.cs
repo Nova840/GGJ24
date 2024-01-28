@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour {
         public float time;
         public float duration;
         public string text;
+        public AudioClip sound;
     }
 
     [SerializeField]
@@ -143,6 +144,9 @@ public class GameManager : MonoBehaviour {
     private IEnumerator SpeechCoroutine(Speech s) {
         yield return new WaitForSeconds(s.time);
         speechText.text = s.text;
+        if (s.sound) {
+            Sound.Play(s.sound, 1);
+        }
         ToggleSpeech(true);
         yield return new WaitForSeconds(s.duration);
         ToggleSpeech(false);
