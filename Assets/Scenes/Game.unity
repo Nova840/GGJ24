@@ -2848,30 +2848,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1118826818927767678, guid: db4ae38f055403344a88ba37e65b7e22,
-        type: 3}
-      propertyPath: m_Mass
-      value: 1e+9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1118826818927767678, guid: db4ae38f055403344a88ba37e65b7e22,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1118826818927767678, guid: db4ae38f055403344a88ba37e65b7e22,
-        type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4224623042130381142, guid: db4ae38f055403344a88ba37e65b7e22,
         type: 3}
       propertyPath: m_Name
       value: Spinning Obstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 6225099446689131220, guid: db4ae38f055403344a88ba37e65b7e22,
-        type: 3}
-      propertyPath: rotateSpeed.y
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6796550244785674246, guid: db4ae38f055403344a88ba37e65b7e22,
         type: 3}

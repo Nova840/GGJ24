@@ -7,6 +7,9 @@ public class Pin : MonoBehaviour {
     [SerializeField]
     private float speed;
 
+    [SerializeField]
+    private float destroyAfterIfNoHit;
+
     private Rigidbody _rigidbody;
     private Collider _collider;
 
@@ -14,20 +17,21 @@ public class Pin : MonoBehaviour {
 
     private Quaternion initialRotation;
 
-    private bool stopped = false;
-
     private void Awake() {
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponentInChildren<Collider>();
     }
 
-    private void Start() {
+    private IEnumerator Start() {
         initialRotation = transform.rotation;
+        yield return new WaitForSeconds(destroyAfterIfNoHit);
+        if (!_rigidbody.isKinematic) {
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player")) return;
-        stopped = true;
         _rigidbody.isKinematic = true;
         Destroy(_collider);
 

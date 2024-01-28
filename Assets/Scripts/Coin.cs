@@ -26,6 +26,12 @@ public class Coin : MonoBehaviour {
         Destroy(gameObject);
     }
 
+    private void Update() {
+        if (transform.position.y <= -1000) {
+            Destroy(gameObject);
+        }
+    }
+
     public bool CanPlayerPickUp(int playerIndex) {
         float delay = playerIndex == this.playerIndex ? samePlayerPickupDelay : otherPlayerPickupDelay;
         if (Time.time - timeCreated < delay) {
