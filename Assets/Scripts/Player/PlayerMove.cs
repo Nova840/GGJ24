@@ -37,6 +37,9 @@ public class PlayerMove : MonoBehaviour {
     [SerializeField]
     private float respawnDelay;
 
+    [SerializeField]
+    private AudioClip[] deathScreams;
+
     private Player player;
     private Camera mainCamera;
     private CharacterActor characterActor;
@@ -54,6 +57,7 @@ public class PlayerMove : MonoBehaviour {
         renderersContainer.SetActive(!respawning);
         characterActor.ColliderComponent.enabled = !respawning;
         if (respawning) {
+            Sound.Play(deathScreams[Random.Range(0, deathScreams.Length)], 1);
             characterActor.Teleport(player.GameManager.GetRandomPlayerSpawnpoint());
             currentYVelocity = 0;
             smoothMoveVectorXZ = Vector3.zero;

@@ -12,7 +12,7 @@ public static class Sound {
         sound.clip = clip;
         sound.volume = volume;
         sound.Play();
-        Object.Destroy(soundPrefab, clip.length);
+        Object.Destroy(sound, clip.length);
     }
 
     public static void LoadSoundPrefabIfNone() {

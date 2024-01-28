@@ -160,6 +160,10 @@ MonoBehaviour:
   hitRecovery: 50
   rotatePointSmoothSpeed: 5
   respawnDelay: 3
+  deathScreams:
+  - {fileID: 8300000, guid: e33152abaf8ebe047b651a2172d87448, type: 3}
+  - {fileID: 8300000, guid: 9e193d73945dc2541a314bb976a6d9b9, type: 3}
+  - {fileID: 8300000, guid: e9dda956d445399408ec84f35c2566a4, type: 3}
 --- !u!114 &2133795424575179326
 MonoBehaviour:
   m_ObjectHideFlags: 0
