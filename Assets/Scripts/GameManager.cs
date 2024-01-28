@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour {
     private GameObject pinPrefab;
 
     [SerializeField]
+    private GameObject meteorPrefab;
+
+    [SerializeField]
     private Transform coinSpawnpointsContainer;
     private List<Transform> coinSpawnpoints = new List<Transform>();
 
@@ -34,11 +37,21 @@ public class GameManager : MonoBehaviour {
     private List<Transform> pinSpawnpoints = new List<Transform>();
 
     [SerializeField]
+    private Transform meteorSpawnpointsContainer;
+    private List<Transform> meteorSpawnpoints = new List<Transform>();
+
+    [SerializeField]
     private float totalTime;
 
     public float TimeLeft { get; private set; }
 
     public event Action<float> OnTimeLeftChange;
+
+    [SerializeField]
+    private GameObject[] enableWhenSpeech;
+
+    [SerializeField]
+    private TMP_Text speechText;
 
     [Serializable]
     private class SpawnCoins {
@@ -60,13 +73,10 @@ public class GameManager : MonoBehaviour {
     private Speech[] speech;
 
     [SerializeField]
-    private GameObject[] enableWhenSpeech;
-
-    [SerializeField]
-    private TMP_Text speechText;
-
-    [SerializeField]
     private float[] pinSpawnTimes;
+
+    [SerializeField]
+    private float[] meteorSpawnTimes;
 
     private void Awake() {
         if (!GameInfo.StartSceneHasLoaded) {
@@ -82,6 +92,9 @@ public class GameManager : MonoBehaviour {
         }
         foreach (Transform child in pinSpawnpointsContainer) {
             pinSpawnpoints.Add(child);
+        }
+        foreach (Transform child in meteorSpawnpointsContainer) {
+            meteorSpawnpoints.Add(child);
         }
     }
 
@@ -99,6 +112,10 @@ public class GameManager : MonoBehaviour {
             StartCoroutine(SpawnPinCoroutine(t));
         }
 
+        foreach (float t in meteorSpawnTimes) {
+            StartCoroutine(SpawnMeteorCoroutine(t));
+        }
+
         List<Transform> playerSpawns = new List<Transform>(playerSpawnpoints);
         for (int playerIndex = 0; playerIndex < GameInfo.GetMaxPlayers(); playerIndex++) {
             if (!GameInfo.GetPlayer(playerIndex)) continue;
@@ -107,6 +124,14 @@ public class GameManager : MonoBehaviour {
             player.Initialize(playerIndex, this);
             cameraManager.AddPlayerTransform(player);
         }
+    }
+
+    private IEnumerator SpawnMeteorCoroutine(float delay) {
+        yield return new WaitForSeconds(delay);
+        Transform meteorSpawnpoint = meteorSpawnpoints[Random.Range(0, meteorSpawnpoints.Count)];
+        Vector3 angles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+        Meteor meteor = Instantiate(meteorPrefab, meteorSpawnpoint.position, Quaternion.Euler(angles)).GetComponent<Meteor>();
+        meteor.Initialize(meteorSpawnpoint.forward);
     }
 
     private IEnumerator SpawnPinCoroutine(float delay) {
