@@ -124,6 +124,7 @@ public class GameManager : MonoBehaviour {
             Player player = Instantiate(playerPrefab, playerSpawns[randomSpawn].position, playerSpawns[randomSpawn].rotation).GetComponent<Player>();
             player.Initialize(playerIndex, this);
             cameraManager.AddPlayerTransform(player);
+            playerSpawns.RemoveAt(randomSpawn);
         }
     }
 
