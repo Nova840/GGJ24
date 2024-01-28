@@ -589,6 +589,9 @@ MonoBehaviour:
   pinSpawnpointsContainer: {fileID: 1267635265}
   meteorSpawnpointsContainer: {fileID: 449608697}
   totalTime: 180
+  enableWhenSpeech:
+  - {fileID: 685573089}
+  speechText: {fileID: 1313523437}
   spawnCoins:
   - time: 5
     amount: 2
@@ -601,9 +604,6 @@ MonoBehaviour:
   - time: 5
     duration: 2
     text: lolololol
-  enableWhenSpeech:
-  - {fileID: 685573089}
-  speechText: {fileID: 1313523437}
   pinSpawnTimes:
   - 1
   - 2
@@ -2779,8 +2779,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d89dc7a5e335446afb77fda86de3a3f6,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2014538606}
   m_SourcePrefab: {fileID: 100100000, guid: d89dc7a5e335446afb77fda86de3a3f6, type: 3}
+--- !u!1 &2014538601 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d89dc7a5e335446afb77fda86de3a3f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 2014538600}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2014538606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014538601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a057cfd3e148da409a63842646f7cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noiseScale: 0.1
+  noiseStrength: 0.25
+  noiseScaleRotate: 0.1
+  noiseStrengthRotate: 10
 --- !u!1 &2102828975
 GameObject:
   m_ObjectHideFlags: 0
