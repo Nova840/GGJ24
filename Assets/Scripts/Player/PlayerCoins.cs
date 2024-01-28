@@ -54,7 +54,7 @@ public class PlayerCoins : MonoBehaviour {
     }
 
     private void Update() {
-        if (characterActor.IsGrounded) {
+        if (characterActor.IsGrounded && !player.PlayerMove.Respawning) {
             coinPointLastGrounded = coinSpawnpoint.position;
         }
         if (transform.position.y <= killYDepth) {
@@ -73,7 +73,9 @@ public class PlayerCoins : MonoBehaviour {
         for (int i = 0; i < coinsToLose; i++) {
             Coin coin = CreateCoin(coinSpawnpoint.position);
 
-            Vector3 direction = GetDirection(hitCoinLaunchMinDegrees, hitCoinLaunchMaxDegrees);
+            Vector2 randomOnCircle = Random.insideUnitCircle.normalized;
+            Vector3 randomOnCircleXZ = new Vector3(randomOnCircle.x, 0, randomOnCircle.y);
+            Vector3 direction = Vector3.Slerp(Vector3.up, randomOnCircleXZ, Random.Range(hitCoinLaunchMinDegrees, hitCoinLaunchMaxDegrees) / 90f);
             LaunchCoin(coin, direction, hitCoinLaunchSpeed);
 
             yield return new WaitForSeconds(coinLaunchInterval);
@@ -81,36 +83,30 @@ public class PlayerCoins : MonoBehaviour {
     }
 
     private void LoseCoinsByFall(float percentCoinsToLose) {
-        StartCoroutine(LoseCoinsByFallCoroutine(percentCoinsToLose));
-    }
-
-    private IEnumerator LoseCoinsByFallCoroutine(float percentCoinsToLose) {
         int coinsToLose = CoinsToLose(percentCoinsToLose);
         for (int i = 0; i < coinsToLose; i++) {
-            Coin coin = CreateCoin(coinPointLastGrounded);
-
-            Vector3 direction = GetDirection(fallCoinLaunchMinDegrees, fallCoinLaunchMaxDegrees);
-            Vector3 fromGroundToPlayerXZ = coinPointLastFell - coinPointLastGrounded;
-            fromGroundToPlayerXZ.y = 0;
-            fromGroundToPlayerXZ = fromGroundToPlayerXZ.normalized;
-            if (Vector3.Angle(fromGroundToPlayerXZ, direction) < 90) {
-                direction = new Vector3(-direction.x, direction.y, -direction.z);//negate vector, then negate y again
-            }
-            LaunchCoin(coin, direction, fallCoinLaunchSpeed);
-
-            yield return new WaitForSeconds(coinLaunchInterval);
+            StartCoroutine(CreateCoinByFallCoroutine(coinLaunchInterval * i, coinPointLastGrounded));
         }
+    }
+
+    //needs to be coroutine so it can queue them 
+    private IEnumerator CreateCoinByFallCoroutine(float delay, Vector3 coinPoint) {
+        yield return new WaitForSeconds(delay);
+
+        Coin coin = CreateCoin(coinPoint);
+
+        Vector3 fromGroundToPlayerXZ = coinPointLastFell - coinPointLastGrounded;
+        fromGroundToPlayerXZ.y = 0;
+        fromGroundToPlayerXZ = fromGroundToPlayerXZ.normalized;
+        Vector3 direction45 = Vector3.Slerp(Vector3.up, -fromGroundToPlayerXZ, .5f);
+        Vector3 randomOnUnitCircleOnPlane = Vector3.ProjectOnPlane(Random.onUnitSphere, direction45).normalized;
+        Vector3 direction = Vector3.Slerp(direction45, randomOnUnitCircleOnPlane, Random.Range(fallCoinLaunchMinDegrees, fallCoinLaunchMaxDegrees) / 90f);
+
+        LaunchCoin(coin, direction, fallCoinLaunchSpeed);
     }
 
     private void LaunchCoin(Coin coin, Vector3 direction, float coinLaunchSpeed) {
         coin.GetComponent<Rigidbody>().velocity = direction * coinLaunchSpeed;
-    }
-
-    private Vector3 GetDirection(float degreesMin, float degreesMax) {
-        Vector2 randomInCircle = Random.insideUnitCircle.normalized;
-        Vector3 randomInCircleXZ = new Vector3(randomInCircle.x, 0, randomInCircle.y);
-        Vector3 direction = Vector3.Slerp(Vector3.up, randomInCircleXZ, Random.Range(degreesMin, degreesMax) / 90f);
-        return direction;
     }
 
     private Coin CreateCoin(Vector3 spawnPosition) {

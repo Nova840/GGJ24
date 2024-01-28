@@ -9,6 +9,9 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour {
 
     [SerializeField]
+    private CameraManager cameraManager;
+
+    [SerializeField]
     private GameObject coinPrefab;
 
     [SerializeField]
@@ -85,6 +88,7 @@ public class GameManager : MonoBehaviour {
             int randomSpawn = Random.Range(0, playerSpawns.Count);
             Player player = Instantiate(playerPrefab, playerSpawns[randomSpawn].position, playerSpawns[randomSpawn].rotation).GetComponent<Player>();
             player.Initialize(playerIndex, this);
+            cameraManager.AddPlayerTransform(player);
         }
     }
 

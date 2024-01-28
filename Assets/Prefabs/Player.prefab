@@ -193,8 +193,8 @@ MonoBehaviour:
   coinSpawnpoint: {fileID: 7825163852782143657}
   hitCoinLaunchMinDegrees: 5
   hitCoinLaunchMaxDegrees: 15
-  fallCoinLaunchMinDegrees: 35
-  fallCoinLaunchMaxDegrees: 55
+  fallCoinLaunchMinDegrees: 0
+  fallCoinLaunchMaxDegrees: 45
   hitCoinLaunchSpeed: 10
   fallCoinLaunchSpeed: 10
   coinLaunchInterval: 0.25
