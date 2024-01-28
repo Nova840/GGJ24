@@ -50,6 +50,10 @@ MonoBehaviour:
   particlesOnHitPrefab: {fileID: 6198845567580109943, guid: 06c37b5cdb9871248bdb8eb93dda95e6,
     type: 3}
   speed: 10
+  explosionRadius: 4.102142
+  tilt: 0.5
+  move: 20
+  percentCoinsLose: 0.5
 --- !u!54 &-2799498068279648892
 Rigidbody:
   m_ObjectHideFlags: 0
