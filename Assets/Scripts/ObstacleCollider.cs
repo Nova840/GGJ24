@@ -28,4 +28,12 @@ public class ObstacleCollider : MonoBehaviour {
         player.PlayerCoins.LoseCoinsByHit(percentCoinsToLose);
     }
 
+    //private void OnTriggerEnter(Collider other) {
+    //    if (other.gameObject.layer != LayerMask.NameToLayer("Player")) return;
+    //    Player player = other.GetComponent<Player>();
+    //    Vector3 direction = _rigidbody.GetPointVelocity(collision.GetContact(0).point);
+    //    player.PlayerMove.ApplyHit(direction, tilt, move);
+    //    player.PlayerCoins.LoseCoinsByHit(percentCoinsToLose);
+    //}
+
 }

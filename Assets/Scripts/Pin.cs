@@ -8,19 +8,28 @@ public class Pin : MonoBehaviour {
     private float speed;
 
     private Rigidbody _rigidbody;
-    private ObstacleCollider obstacleCollider;
+    private Collider _collider;
 
     private GameObject follow;
 
+    private Quaternion initialRotation;
+
+    private bool stopped = false;
+
     private void Awake() {
         _rigidbody = GetComponent<Rigidbody>();
-        obstacleCollider = GetComponentInChildren<ObstacleCollider>();
+        _collider = GetComponentInChildren<Collider>();
+    }
+
+    private void Start() {
+        initialRotation = transform.rotation;
     }
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player")) return;
+        stopped = true;
         _rigidbody.isKinematic = true;
-        Destroy(obstacleCollider.gameObject);
+        Destroy(_collider);
 
         follow = new GameObject();
         follow.transform.SetPositionAndRotation(transform.position, transform.rotation);
@@ -29,6 +38,8 @@ public class Pin : MonoBehaviour {
 
     private void FixedUpdate() {
         if (!_rigidbody.isKinematic) {
+            transform.rotation = initialRotation;
+            _rigidbody.angularVelocity = Vector3.zero;
             _rigidbody.velocity = transform.forward * speed;
         } else if (follow) {
             transform.SetPositionAndRotation(follow.transform.position, follow.transform.rotation);

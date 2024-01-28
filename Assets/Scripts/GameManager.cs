@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour {
     private GameObject playerPrefab;
 
     [SerializeField]
+    private GameObject pinPrefab;
+
+    [SerializeField]
     private Transform coinSpawnpointsContainer;
     private List<Transform> coinSpawnpoints = new List<Transform>();
 
@@ -25,6 +28,10 @@ public class GameManager : MonoBehaviour {
     private Transform playerSpawnpointsContainer;
     private List<Transform> playerSpawnpoints = new List<Transform>();
     public Transform GetRandomPlayerSpawnpoint() => playerSpawnpoints[Random.Range(0, playerSpawnpoints.Count)];
+
+    [SerializeField]
+    private Transform pinSpawnpointsContainer;
+    private List<Transform> pinSpawnpoints = new List<Transform>();
 
     [SerializeField]
     private float totalTime;
@@ -58,6 +65,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private TMP_Text speechText;
 
+    [SerializeField]
+    private float[] pinSpawnTimes;
+
     private void Awake() {
         if (!GameInfo.StartSceneHasLoaded) {
             GameInfo.SetPlayer(0, true);
@@ -69,6 +79,9 @@ public class GameManager : MonoBehaviour {
         }
         foreach (Transform child in playerSpawnpointsContainer) {
             playerSpawnpoints.Add(child);
+        }
+        foreach (Transform child in pinSpawnpointsContainer) {
+            pinSpawnpoints.Add(child);
         }
     }
 
@@ -82,6 +95,10 @@ public class GameManager : MonoBehaviour {
             StartCoroutine(SpeechCoroutine(s));
         }
 
+        foreach (float t in pinSpawnTimes) {
+            StartCoroutine(SpawnPinCoroutine(t));
+        }
+
         List<Transform> playerSpawns = new List<Transform>(playerSpawnpoints);
         for (int playerIndex = 0; playerIndex < GameInfo.GetMaxPlayers(); playerIndex++) {
             if (!GameInfo.GetPlayer(playerIndex)) continue;
@@ -90,6 +107,12 @@ public class GameManager : MonoBehaviour {
             player.Initialize(playerIndex, this);
             cameraManager.AddPlayerTransform(player);
         }
+    }
+
+    private IEnumerator SpawnPinCoroutine(float delay) {
+        yield return new WaitForSeconds(delay);
+        Transform pinSpawnpoint = pinSpawnpoints[Random.Range(0, pinSpawnpoints.Count)];
+        Instantiate(pinPrefab, pinSpawnpoint.position, pinSpawnpoint.rotation);
     }
 
     private IEnumerator SpeechCoroutine(Speech s) {
