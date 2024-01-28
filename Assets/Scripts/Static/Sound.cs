@@ -6,10 +6,11 @@ public static class Sound {
 
     private static GameObject soundPrefab;
 
-    public static void Play(AudioClip clip) {
+    public static void Play(AudioClip clip, float volume) {
         LoadSoundPrefabIfNone();
         AudioSource sound = Object.Instantiate(soundPrefab).GetComponent<AudioSource>();
         sound.clip = clip;
+        sound.volume = volume;
         sound.Play();
         Object.Destroy(soundPrefab, clip.length);
     }
