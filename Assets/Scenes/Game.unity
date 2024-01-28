@@ -458,8 +458,10 @@ MonoBehaviour:
   - time: 1
     duration: 2
     text: U SUCQ
+  - time: 5
+    duration: 2
+    text: lolololol
   enableWhenSpeech:
-  - {fileID: 1562484560}
   - {fileID: 685573089}
   speechText: {fileID: 1313523437}
 --- !u!4 &472880543
@@ -1811,12 +1813,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1741974627}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1562484560 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d89dc7a5e335446afb77fda86de3a3f6,
-    type: 3}
-  m_PrefabInstance: {fileID: 2014538600}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1665430507
 GameObject:
   m_ObjectHideFlags: 0
