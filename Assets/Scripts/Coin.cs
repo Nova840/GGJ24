@@ -10,6 +10,9 @@ public class Coin : MonoBehaviour {
     [SerializeField]
     private float otherPlayerPickupDelay;
 
+    [SerializeField]
+    private AudioClip pickupClip;
+
     private int playerIndex = -1;//-1 means environment spawned it
 
     private float timeCreated;
@@ -23,6 +26,7 @@ public class Coin : MonoBehaviour {
     }
 
     public void PickUp() {
+        Sound.Play(pickupClip, 1);
         Destroy(gameObject);
     }
 

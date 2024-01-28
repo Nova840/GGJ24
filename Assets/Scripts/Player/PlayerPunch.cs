@@ -19,6 +19,9 @@ public class PlayerPunch : MonoBehaviour {
     [SerializeField, Range(0, 1)]
     private float percentCoinsToLose;
 
+    [SerializeField]
+    private AudioClip punchClip, hitClip;
+
     private Player player;
 
     public event Action OnPunch;
@@ -34,16 +37,22 @@ public class PlayerPunch : MonoBehaviour {
     }
 
     private void Punch() {
+        Sound.Play(punchClip, 1);
         Collider[] playerColliders = Physics.OverlapBox(
             punchTrigger.transform.position,
             punchTrigger.transform.lossyScale / 2f,
             punchTrigger.transform.rotation,
             LayerMask.GetMask("Player")
         );
+        bool soundPlayed = false;
         foreach (Collider c in playerColliders) {
             if (c.isTrigger) continue;
             Player p = c.GetComponent<Player>();
             if (p && p == player) continue;
+            if (!soundPlayed) {
+                Sound.Play(hitClip, 1);
+                soundPlayed = true;
+            }
             p.PlayerMove.ApplyHit(p.transform.position - transform.position, punchTilt, punchMove);
             p.PlayerCoins.LoseCoinsByHit(percentCoinsToLose);
         }

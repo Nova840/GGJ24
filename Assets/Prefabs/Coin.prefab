@@ -183,6 +183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   samePlayerPickupDelay: 1
   otherPlayerPickupDelay: 1
+  pickupClip: {fileID: 8300000, guid: 46508a482dfc16340ab5910b127b44e5, type: 3}
 --- !u!1001 &8321248612317546739
 PrefabInstance:
   m_ObjectHideFlags: 0
