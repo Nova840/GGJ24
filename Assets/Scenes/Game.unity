@@ -1767,6 +1767,7 @@ GameObject:
   - component: {fileID: 1982196347}
   - component: {fileID: 1982196342}
   - component: {fileID: 1982196346}
+  - component: {fileID: 1982196348}
   m_Layer: 0
   m_Name: Spinning Obstacle
   m_TagString: Untagged
@@ -1899,7 +1900,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4af0976c28bdd4bb9572539a8c6e43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotateSpeed: {x: 0, y: 2, z: 0}
+  rotateSpeed: {x: 0, y: 1, z: 0}
+--- !u!114 &1982196348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982196341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e69ce645d30fb40b4ce117e0f8a8a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilt: 0.5
+  move: 20
 --- !u!1 &2125972293
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class PlayerPunch : MonoBehaviour {
     [SerializeField]
     private BoxCollider punchTrigger;
 
-    [SerializeField]
+    [SerializeField, Range(0, 1)]
     private float punchTilt;
 
     [SerializeField]
