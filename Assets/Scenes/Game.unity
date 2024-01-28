@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -857,9 +857,11 @@ MonoBehaviour:
   - time: 1
     duration: 2
     text: U SUCQ
+    sound: {fileID: 0}
   - time: 5
     duration: 2
     text: lolololol
+    sound: {fileID: 0}
   pinSpawnTimes:
   - 1
   - 2
@@ -3568,6 +3570,10 @@ SceneRoots:
   m_Roots:
   - {fileID: 472880543}
   - {fileID: 791898037}
+  - {fileID: 449608697}
+  - {fileID: 1267635265}
+  - {fileID: 179021902}
+  - {fileID: 1741974627}
   - {fileID: 1336735776}
   - {fileID: 203844589}
   - {fileID: 1160234427}
@@ -3575,13 +3581,9 @@ SceneRoots:
   - {fileID: 164548603407222996}
   - {fileID: 1665430511}
   - {fileID: 1399177291}
-  - {fileID: 1741974627}
-  - {fileID: 179021902}
   - {fileID: 2102828978}
   - {fileID: 2014538600}
   - {fileID: 915326008}
-  - {fileID: 1267635265}
   - {fileID: 20894158}
   - {fileID: 1180966605}
-  - {fileID: 449608697}
   - {fileID: 366345953}
