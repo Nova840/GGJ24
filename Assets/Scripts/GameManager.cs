@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -178,6 +179,9 @@ public class GameManager : MonoBehaviour {
             OnTimeLeftChange?.Invoke(TimeLeft);
         } else {
             SceneManager.LoadScene("End");
+        }
+        if (Keyboard.current.escapeKey.wasPressedThisFrame) {
+            SceneManager.LoadScene("Start");
         }
     }
 
