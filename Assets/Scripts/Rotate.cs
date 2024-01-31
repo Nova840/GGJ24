@@ -7,8 +7,11 @@ public class Rotate : MonoBehaviour {
     [SerializeField]
     private Vector3 rotateSpeed;
 
+    [SerializeField]
+    private Space space;
+
     private void Update() {
-        transform.Rotate(rotateSpeed * Time.deltaTime, Space.World);
+        transform.Rotate(rotateSpeed * Time.deltaTime, space);
     }
 
 }

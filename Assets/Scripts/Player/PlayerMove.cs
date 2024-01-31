@@ -43,6 +43,7 @@ public class PlayerMove : MonoBehaviour {
     private Player player;
     private Camera mainCamera;
     private CharacterActor characterActor;
+    private Light spotlight;
 
     private float currentYVelocity = 0;
     private Vector3 smoothMoveVectorXZ = Vector3.zero;
@@ -56,6 +57,7 @@ public class PlayerMove : MonoBehaviour {
         Respawning = respawning;
         renderersContainer.SetActive(!respawning);
         characterActor.ColliderComponent.enabled = !respawning;
+        spotlight.gameObject.SetActive(!respawning);
         if (respawning) {
             Sound.Play(deathScreams[Random.Range(0, deathScreams.Length)], 1);
             characterActor.Teleport(player.GameManager.GetRandomPlayerSpawnpoint());
@@ -74,6 +76,7 @@ public class PlayerMove : MonoBehaviour {
         player = GetComponent<Player>();
         characterActor = GetComponent<CharacterActor>();
         mainCamera = Camera.main;
+        spotlight = GetComponentInChildren<Light>();
     }
 
     private void Update() {
