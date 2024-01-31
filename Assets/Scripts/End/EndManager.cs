@@ -42,8 +42,11 @@ public class EndManager : MonoBehaviour {
     }
 
     private void Update() {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame) {
+            SceneManager.LoadScene("Start");
+        }
         for (int i = 0; i < GameInfo.GetMaxPlayers(); i++) {
-            if (Gamepad.all[0].selectButton.wasPressedThisFrame) {
+            if (Gamepad.all[i].selectButton.wasPressedThisFrame) {
                 SceneManager.LoadScene("Start");
             }
         }
