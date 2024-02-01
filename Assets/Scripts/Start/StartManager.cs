@@ -25,6 +25,9 @@ public class StartManager : MonoBehaviour {
         if (Keyboard.current.spaceKey.wasPressedThisFrame && !GameInfo.PlayerWithInputExists(-1)) {
             GameInfo.SetPlayer(GameInfo.GetNumPlayers(), -1);
         }
+        if ((Keyboard.current.rightCtrlKey.wasPressedThisFrame || Keyboard.current.rightShiftKey.wasPressedThisFrame) && !GameInfo.PlayerWithInputExists(-2)) {
+            GameInfo.SetPlayer(GameInfo.GetNumPlayers(), -2);
+        }
         for (int playerInput = 0; playerInput < Gamepad.all.Count; playerInput++) {
             if (Gamepad.all[playerInput].buttonSouth.wasPressedThisFrame && !GameInfo.PlayerWithInputExists(playerInput)) {
                 GameInfo.SetPlayer(GameInfo.GetNumPlayers(), playerInput);
@@ -34,7 +37,14 @@ public class StartManager : MonoBehaviour {
         for (int playerIndex = 0; playerIndex < GameInfo.GetNumPlayers(); playerIndex++) {
             int playerInput = (int)GameInfo.GetPlayer(playerIndex);
             if (playerInput == -1) {
-                if (Keyboard.current.backspaceKey.wasPressedThisFrame) {
+                if (Keyboard.current.bKey.wasPressedThisFrame) {
+                    ClearPlayer(playerIndex);
+                }
+                if (Keyboard.current.enterKey.wasPressedThisFrame) {
+                    SceneManager.LoadScene("Game");
+                }
+            } else if (playerInput == -2) {
+                if (Keyboard.current.periodKey.wasPressedThisFrame) {
                     ClearPlayer(playerIndex);
                 }
                 if (Keyboard.current.enterKey.wasPressedThisFrame) {
@@ -48,6 +58,10 @@ public class StartManager : MonoBehaviour {
                     SceneManager.LoadScene("Game");
                 }
             }
+        }
+
+        for (int playerIndex = 0; playerIndex < GameInfo.GetNumPlayers(); playerIndex++) {
+
         }
     }
 

@@ -14,6 +14,9 @@ public class ObstacleCollider : MonoBehaviour {
     [SerializeField, Range(0, 1)]
     private float percentCoinsToLose = .1f;
 
+    [SerializeField]
+    private Collider obstacleCollider;
+
     private Rigidbody _rigidbody;
 
     private void Awake() {
@@ -22,18 +25,11 @@ public class ObstacleCollider : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.collider.gameObject.layer != LayerMask.NameToLayer("Player")) return;
+        if (collision.GetContact(0).thisCollider != obstacleCollider) return;
         Player player = collision.collider.GetComponent<Player>();
         Vector3 direction = _rigidbody.GetPointVelocity(collision.GetContact(0).point);
         player.PlayerMove.ApplyHit(direction, tilt, move);
         player.PlayerCoins.LoseCoinsByHit(percentCoinsToLose);
     }
-
-    //private void OnTriggerEnter(Collider other) {
-    //    if (other.gameObject.layer != LayerMask.NameToLayer("Player")) return;
-    //    Player player = other.GetComponent<Player>();
-    //    Vector3 direction = _rigidbody.GetPointVelocity(collision.GetContact(0).point);
-    //    player.PlayerMove.ApplyHit(direction, tilt, move);
-    //    player.PlayerCoins.LoseCoinsByHit(percentCoinsToLose);
-    //}
 
 }

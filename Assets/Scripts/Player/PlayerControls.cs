@@ -15,6 +15,8 @@ public class PlayerControls : MonoBehaviour {
         Vector2 inputVector;
         if (player.PlayerInput == -1) {
             inputVector = new Vector2(Keyboard.current.dKey.value - Keyboard.current.aKey.value, Keyboard.current.wKey.value - Keyboard.current.sKey.value);
+        } else if (player.PlayerInput == -2) {
+            inputVector = new Vector2(Keyboard.current.rightArrowKey.value - Keyboard.current.leftArrowKey.value, Keyboard.current.upArrowKey.value - Keyboard.current.downArrowKey.value);
         } else {
             inputVector = Gamepad.all[player.PlayerInput].leftStick.value;
         }
@@ -25,6 +27,8 @@ public class PlayerControls : MonoBehaviour {
     public bool GetJump() {
         if (player.PlayerInput == -1) {
             return Keyboard.current.spaceKey.wasPressedThisFrame;
+        } else if (player.PlayerInput == -2) {
+            return Keyboard.current.rightCtrlKey.wasPressedThisFrame || Keyboard.current.rightShiftKey.wasPressedThisFrame;
         } else {
             return Gamepad.all[player.PlayerInput].buttonSouth.wasPressedThisFrame;
         }
@@ -32,7 +36,9 @@ public class PlayerControls : MonoBehaviour {
 
     public bool GetAttack() {
         if (player.PlayerInput == -1) {
-            return Mouse.current.leftButton.wasPressedThisFrame;
+            return Keyboard.current.bKey.wasPressedThisFrame;
+        } else if (player.PlayerInput == -2) {
+            return Keyboard.current.periodKey.wasPressedThisFrame;
         } else {
             return Gamepad.all[player.PlayerInput].buttonWest.wasPressedThisFrame;
         }

@@ -286,8 +286,8 @@ MonoBehaviour:
   renderersContainer: {fileID: 1004191587541256776}
   moveSpeed: 5
   rotateSpeed: 20
-  gravity: 20
-  jumpHeight: 2
+  gravity: 40
+  jumpHeight: 3
   acceleration: 20
   hitRecovery: 50
   rotatePointSmoothSpeed: 5

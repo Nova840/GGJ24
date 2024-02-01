@@ -6110,11 +6110,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spinning Obstacle (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 6225099446689131220, guid: db4ae38f055403344a88ba37e65b7e22,
-        type: 3}
-      propertyPath: rotateSpeed.y
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 6796550244785674246, guid: db4ae38f055403344a88ba37e65b7e22,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6123,7 +6118,7 @@ PrefabInstance:
     - target: {fileID: 6796550244785674246, guid: db4ae38f055403344a88ba37e65b7e22,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.08
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6796550244785674246, guid: db4ae38f055403344a88ba37e65b7e22,
         type: 3}
@@ -6778,7 +6773,7 @@ PrefabInstance:
     - target: {fileID: 6796550244785674246, guid: db4ae38f055403344a88ba37e65b7e22,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.08
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6796550244785674246, guid: db4ae38f055403344a88ba37e65b7e22,
         type: 3}
