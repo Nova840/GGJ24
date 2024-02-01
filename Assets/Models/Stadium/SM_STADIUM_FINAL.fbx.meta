@@ -13,17 +13,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Fabric_01
-    second: {fileID: 2100000, guid: 20269b7ae658c4cae99199d546d04649, type: 2}
+    second: {fileID: 2100000, guid: 06d4bec3a864b92489a21d5f9ea9390e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_Glass
-    second: {fileID: 2100000, guid: 9ba700845215a4ed68fb98b98c0b3b35, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: M_Mountains
-    second: {fileID: 2100000, guid: 166fd1e435c454af891d253ad729822c, type: 2}
+      name: M_Fabric_02
+    second: {fileID: 2100000, guid: 8dcae57a4b288ed44bc5e4e2723d6053, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
