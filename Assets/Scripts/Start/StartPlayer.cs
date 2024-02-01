@@ -33,11 +33,15 @@ public class StartPlayer : MonoBehaviour {
             SetText("Ready");
         } else {
             if (GameInfo.GetNumPlayers() == playerIndex) {
-                if (GameInfo.PlayerWithInputExists(-1)) {
-                    SetText("Press A to join");
-                } else {
-                    SetText("Press A/SPACE to join");
+                string t = "Press A";
+                if (!GameInfo.PlayerWithInputExists(-1)) {
+                    t += "/SPACE";
                 }
+                if (!GameInfo.PlayerWithInputExists(-2)) {
+                    t += "/RIGHT CTRL";
+                }
+                t += " to join";
+                SetText(t);
             } else {
                 SetText("");
             }
