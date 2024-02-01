@@ -10,6 +10,9 @@ public class Pin : MonoBehaviour {
     [SerializeField]
     private float destroyAfterIfNoHit;
 
+    [SerializeField]
+    private AudioClip pinStickClip;
+
     private Rigidbody _rigidbody;
     private Collider _collider;
 
@@ -34,6 +37,7 @@ public class Pin : MonoBehaviour {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player")) return;
         _rigidbody.isKinematic = true;
         Destroy(_collider);
+        Sound.Play(pinStickClip, 1);
 
         follow = new GameObject();
         follow.transform.SetPositionAndRotation(transform.position, transform.rotation);

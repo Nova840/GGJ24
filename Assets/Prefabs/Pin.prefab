@@ -77,6 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   destroyAfterIfNoHit: 10
+  pinStickClip: {fileID: 8300000, guid: da270a7f12b048045ae4f51bdaff757b, type: 3}
 --- !u!114 &4711762376257477515
 MonoBehaviour:
   m_ObjectHideFlags: 0

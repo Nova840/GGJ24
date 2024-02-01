@@ -23,6 +23,12 @@ public class Meteor : MonoBehaviour {
     [SerializeField]
     private float percentCoinsLose = .5f;
 
+    [SerializeField]
+    private AudioClip hitGroundClip;
+
+    [SerializeField]
+    private float minRotateSpeeed, maxRotateSpeeed;
+
     private Rigidbody _rigidbody;
 
     private Vector3 spawnpointForward;
@@ -33,6 +39,10 @@ public class Meteor : MonoBehaviour {
 
     private void Awake() {
         _rigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Start() {
+        _rigidbody.angularVelocity = Random.onUnitSphere * Random.Range(minRotateSpeeed, maxRotateSpeeed);
     }
 
     private void FixedUpdate() {
@@ -49,6 +59,7 @@ public class Meteor : MonoBehaviour {
             p.PlayerMove.ApplyHit(p.transform.position - transform.position, tilt, move);
             p.PlayerCoins.LoseCoinsByHit(percentCoinsLose);
         }
+        Sound.Play(hitGroundClip, 1);
         Destroy(gameObject);
     }
 
