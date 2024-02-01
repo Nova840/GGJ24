@@ -36,7 +36,7 @@ public class PlayerControls : MonoBehaviour {
 
     public bool GetAttack() {
         if (player.PlayerInput == -1) {
-            return Keyboard.current.bKey.wasPressedThisFrame;
+            return Keyboard.current.bKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame;
         } else if (player.PlayerInput == -2) {
             return Keyboard.current.periodKey.wasPressedThisFrame;
         } else {
