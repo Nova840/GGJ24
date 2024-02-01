@@ -3,28 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 public class StartManager : MonoBehaviour {
 
     private void Start() {
         GameInfo.SetStartSceneHasLoaded();
-        for (int i = 0; i < GameInfo.GetMaxPlayers(); i++) {
-            GameInfo.SetPlayer(i, false);
-            GameInfo.SetCoins(i, 0);
-        }
     }
 
     private void Update() {
-        for (int i = 0; i < GameInfo.GetMaxPlayers(); i++) {
-            if (Gamepad.all.Count <= i) return;
-            if (Gamepad.all[i].buttonSouth.wasPressedThisFrame) {
-                GameInfo.SetPlayer(i, true);
+        if (Keyboard.current.escapeKey.wasPressedThisFrame) {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
+
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && !GameInfo.PlayerWithInputExists(-1)) {
+            GameInfo.SetPlayer(GameInfo.GetNumPlayers(), -1);
+        }
+        for (int playerInput = 0; playerInput < Gamepad.all.Count; playerInput++) {
+            if (Gamepad.all[playerInput].buttonSouth.wasPressedThisFrame && !GameInfo.PlayerWithInputExists(playerInput)) {
+                GameInfo.SetPlayer(GameInfo.GetNumPlayers(), playerInput);
             }
-            if (Gamepad.all[i].buttonEast.wasPressedThisFrame) {
-                GameInfo.SetPlayer(i, false);
+        }
+
+        for (int playerIndex = 0; playerIndex < GameInfo.GetNumPlayers(); playerIndex++) {
+            int playerInput = (int)GameInfo.GetPlayer(playerIndex);
+            if (playerInput == -1) {
+                if (Keyboard.current.backspaceKey.wasPressedThisFrame) {
+                    ClearPlayer(playerIndex);
+                }
+                if (Keyboard.current.enterKey.wasPressedThisFrame) {
+                    SceneManager.LoadScene("Game");
+                }
+            } else {
+                if (Gamepad.all[playerInput].buttonEast.wasPressedThisFrame) {
+                    ClearPlayer(playerIndex);
+                }
+                if (Gamepad.all[playerInput].startButton.wasPressedThisFrame) {
+                    SceneManager.LoadScene("Game");
+                }
             }
-            if (GameInfo.GetPlayer(i) && Gamepad.all[i].startButton.wasPressedThisFrame) {
-                SceneManager.LoadScene("Game");
+        }
+    }
+
+    private void ClearPlayer(int playerIndex) {
+        GameInfo.SetPlayer(playerIndex, null);
+        for (int i = playerIndex; i < GameInfo.GetMaxPlayers(); i++) {
+            if (i == GameInfo.GetMaxPlayers() - 1) {
+                GameInfo.SetPlayer(i, null);
+            } else {
+                GameInfo.SetPlayer(i, GameInfo.GetPlayer(i + 1));
             }
         }
     }

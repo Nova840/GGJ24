@@ -1186,7 +1186,7 @@ MonoBehaviour:
   playerSpawnpointsContainer: {fileID: 179021902}
   pinSpawnpointsContainer: {fileID: 1267635265}
   meteorSpawnpointsContainer: {fileID: 449608697}
-  totalTime: 180
+  totalTime: 2
   enableWhenSpeech:
   - {fileID: 685573089}
   speechText: {fileID: 1313523437}

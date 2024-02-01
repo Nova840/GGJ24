@@ -648,8 +648,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 343, y: -212}
-  m_SizeDelta: {x: 500, y: 50}
+  m_AnchoredPosition: {x: 449, y: -279}
+  m_SizeDelta: {x: 750, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &916901200
 MonoBehaviour:
@@ -671,7 +671,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press BACK/ESCAPE to play again
+  m_text: 'Press START/ENTER to play again
+
+    Press BACK/ESCAPE to return to the
+    main menu'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2a4dcd957c564cdb91cb66e16da46e7, type: 2}
   m_sharedMaterial: {fileID: 5241669458305786417, guid: f2a4dcd957c564cdb91cb66e16da46e7,

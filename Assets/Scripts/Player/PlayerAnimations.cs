@@ -21,7 +21,7 @@ public class PlayerAnimations : MonoBehaviour {
         player = GetComponent<Player>();
         characterActor = GetComponent<CharacterActor>();
         animator = GetComponentInChildren<Animator>();
-        player.PlayerPunch.OnPunch += OnPunch;
+        player.PlayerPunch.OnAttack += OnPunch;
     }
 
     private void OnPunch() {

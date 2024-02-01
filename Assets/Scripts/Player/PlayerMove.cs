@@ -2,7 +2,6 @@ using Lightbug.CharacterControllerPro.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlayerMove : MonoBehaviour {
 
@@ -91,14 +90,18 @@ public class PlayerMove : MonoBehaviour {
     }
 
     private void Move() {
-        Vector2 inputVector = Gamepad.all[player.PlayerIndex].leftStick.value;
-        inputVector = Vector2.ClampMagnitude(inputVector, 1);
-        Vector3 moveVectorXZ = mainCamera.transform.TransformDirection(new Vector3(inputVector.x, 0, inputVector.y));
-        moveVectorXZ.y = 0;
-        moveVectorXZ = moveVectorXZ.normalized * inputVector.magnitude * moveSpeed;
+        Vector2 inputVector = player.PlayerControls.GetMove();
+        Vector3 mainCameraUpXZ = mainCamera.transform.up;
+        if (mainCameraUpXZ == Vector3.up) {
+            mainCameraUpXZ = mainCamera.transform.forward;
+        }
+        mainCameraUpXZ.y = 0;
+        Quaternion mainCameraUpXZRotation = Quaternion.LookRotation(mainCameraUpXZ, Vector3.up);
+        Vector3 moveVectorXZ = mainCameraUpXZRotation * new Vector3(inputVector.x, 0, inputVector.y);
+        moveVectorXZ *= inputVector.magnitude * moveSpeed;
 
         if (characterActor.IsGrounded) {
-            if (Gamepad.all[player.PlayerIndex].buttonSouth.wasPressedThisFrame) {
+            if (player.PlayerControls.GetJump()) {
                 characterActor.ForceNotGrounded();
                 currentYVelocity = Mathf.Sqrt(-jumpHeight * -2 * gravity);//formula to calculate velocity from jump height
             } else {

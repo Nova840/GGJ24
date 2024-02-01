@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1337845799361422979}
   - component: {fileID: 6485063663302159492}
   m_Layer: 6
-  m_Name: Punch Trigger
+  m_Name: Attack Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,6 +212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 938508905471336665}
   - component: {fileID: 4832885826177464}
+  - component: {fileID: -1197112305011546360}
   - component: {fileID: 1316851508147080824}
   - component: {fileID: 2133795424575179326}
   - component: {fileID: 107463724804216036}
@@ -257,6 +258,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d7f1f9a6f3382541aafe285f27b5217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-1197112305011546360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7851126847298940672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dadeb589372ad46a9f5792dfd1227b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1316851508147080824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,12 +308,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d70e2af1f4896e428c62e1e22c1cf33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  punchTrigger: {fileID: 6485063663302159492}
-  punchTilt: 0.5
-  punchMove: 20
+  attackTrigger: {fileID: 6485063663302159492}
+  attackTilt: 0.5
+  attackMove: 20
   percentCoinsToLose: 0.25
-  punchClip: {fileID: 8300000, guid: 3f95a0f10a294e347a5e6753cbc37084, type: 3}
-  hitClip: {fileID: 8300000, guid: 579b6aa6de9a5984094013d9518cde94, type: 3}
+  attackClip: {fileID: 8300000, guid: 3f95a0f10a294e347a5e6753cbc37084, type: 3}
+  attackHitClip: {fileID: 8300000, guid: 579b6aa6de9a5984094013d9518cde94, type: 3}
 --- !u!114 &107463724804216036
 MonoBehaviour:
   m_ObjectHideFlags: 0

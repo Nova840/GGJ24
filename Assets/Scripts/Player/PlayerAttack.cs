@@ -1,47 +1,45 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerPunch : MonoBehaviour {
+public class PlayerAttack : MonoBehaviour {
 
     [SerializeField]
-    private BoxCollider punchTrigger;
+    private BoxCollider attackTrigger;
 
     [SerializeField, Range(0, 1)]
-    private float punchTilt;
+    private float attackTilt;
 
     [SerializeField]
-    private float punchMove;
+    private float attackMove;
 
     [SerializeField, Range(0, 1)]
     private float percentCoinsToLose;
 
     [SerializeField]
-    private AudioClip punchClip, hitClip;
+    private AudioClip attackClip, attackHitClip;
 
     private Player player;
 
-    public event Action OnPunch;
+    public event Action OnAttack;
 
     private void Awake() {
         player = GetComponent<Player>();
     }
 
     private void Update() {
-        if (Gamepad.all[player.PlayerIndex].buttonWest.wasPressedThisFrame) {
-            Punch();
+        if (player.PlayerControls.GetAttack()) {
+            Attack();
         }
     }
 
-    private void Punch() {
-        Sound.Play(punchClip, 1);
+    private void Attack() {
+        Sound.Play(attackClip, 1);
         Collider[] playerColliders = Physics.OverlapBox(
-            punchTrigger.transform.position,
-            punchTrigger.transform.lossyScale / 2f,
-            punchTrigger.transform.rotation,
+            attackTrigger.transform.position,
+            attackTrigger.transform.lossyScale / 2f,
+            attackTrigger.transform.rotation,
             LayerMask.GetMask("Player")
         );
         bool soundPlayed = false;
@@ -50,12 +48,13 @@ public class PlayerPunch : MonoBehaviour {
             Player p = c.GetComponent<Player>();
             if (p && p == player) continue;
             if (!soundPlayed) {
-                Sound.Play(hitClip, 1);
+                Sound.Play(attackHitClip, 1);
                 soundPlayed = true;
             }
-            p.PlayerMove.ApplyHit(p.transform.position - transform.position, punchTilt, punchMove);
+            p.PlayerMove.ApplyHit(p.transform.position - transform.position, attackTilt, attackMove);
             p.PlayerCoins.LoseCoinsByHit(percentCoinsToLose);
         }
-        OnPunch?.Invoke();
+        OnAttack?.Invoke();
     }
+
 }

@@ -82,7 +82,11 @@ public class GameManager : MonoBehaviour {
 
     private void Awake() {
         if (!GameInfo.StartSceneHasLoaded) {
-            GameInfo.SetPlayer(0, true);
+            GameInfo.SetPlayer(0, -1);
+        } else {
+            for (int i = 0; i < GameInfo.GetMaxPlayers(); i++) {
+                GameInfo.SetCoins(i, 0);
+            }
         }
 
         TimeLeft = totalTime;
@@ -120,10 +124,10 @@ public class GameManager : MonoBehaviour {
 
         List<Transform> playerSpawns = new List<Transform>(playerSpawnpoints);
         for (int playerIndex = 0; playerIndex < GameInfo.GetMaxPlayers(); playerIndex++) {
-            if (!GameInfo.GetPlayer(playerIndex)) continue;
+            if (GameInfo.GetPlayer(playerIndex) == null) continue;
             int randomSpawn = Random.Range(0, playerSpawns.Count);
             Player player = Instantiate(playerPrefab, playerSpawns[randomSpawn].position, playerSpawns[randomSpawn].rotation).GetComponent<Player>();
-            player.Initialize(playerIndex, this);
+            player.Initialize(playerIndex, (int)GameInfo.GetPlayer(playerIndex), this);
             cameraManager.AddPlayerTransform(player);
             playerSpawns.RemoveAt(randomSpawn);
         }

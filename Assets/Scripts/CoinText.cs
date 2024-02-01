@@ -16,6 +16,10 @@ public class CoinText : MonoBehaviour {
         GameInfo.OnCoinsChange += OnCoinsChange;
     }
 
+    private void OnDestroy() {
+        GameInfo.OnCoinsChange -= OnCoinsChange;
+    }
+
     private void Start() {
         UpdateText();
     }
@@ -27,7 +31,7 @@ public class CoinText : MonoBehaviour {
     }
 
     private void UpdateText() {
-        if (GameInfo.GetPlayer(playerIndex)) {
+        if (GameInfo.GetPlayer(playerIndex) != null) {
             text.text = $"Player {playerIndex + 1}: {GameInfo.GetCoins(playerIndex)}";
         } else {
             text.text = "";
