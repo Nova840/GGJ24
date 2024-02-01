@@ -30,14 +30,19 @@ public class EndManager : MonoBehaviour {
         }
         winners = winners.OrderByDescending(playerIndex => GameInfo.GetCoins(playerIndex)).ToList();
 
-        for (int i = 0; i < endPlayers.Length; i++) {
-            if (!winners.Contains(i)) {
-                endPlayers[i].SetActive(false);
-            }
+        for (int i = winners.Count; i < endPlayers.Length; i++) {
+            endPlayers[i].SetActive(false);
         }
 
         for (int i = 0; i < winners.Count; i++) {
             endPlayers[i].GetComponentInChildren<Renderer>().material = endPlayerMaterials[winners[i]];
+        }
+    }
+
+    private void Start() {
+        for (int i = 0; i < endPlayers.Length; i++) {
+            if (!endPlayers[i].activeInHierarchy) continue;
+            endPlayers[i].GetComponentInChildren<Animator>().Play("Stand", 0, (float)i / endPlayers.Length);
         }
     }
 
