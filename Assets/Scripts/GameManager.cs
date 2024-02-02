@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -66,19 +67,19 @@ public class GameManager : MonoBehaviour {
     private Speech[] speech;
 
     [Serializable]
-    private class SpawnCoins {
+    private class Spawn {
         public float time;
-        public float amount;
+        public int amount;
     }
 
     [SerializeField]
-    private SpawnCoins[] spawnCoins;
+    private Spawn[] spawnCoins;
 
     [SerializeField]
-    private float[] pinSpawnTimes;
+    private Spawn[] spawnPins;
 
     [SerializeField]
-    private float[] meteorSpawnTimes;
+    private Spawn[] spawnMeteors;
 
     private void Awake() {
         if (!GameInfo.StartSceneHasLoaded) {
@@ -105,21 +106,21 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Start() {
-        foreach (SpawnCoins sc in spawnCoins) {
-            StartCoroutine(CoinSpawnCoroutine(sc));
-        }
-
         ToggleSpeech(false);
         foreach (Speech s in speech) {
             StartCoroutine(SpeechCoroutine(s));
         }
 
-        foreach (float t in pinSpawnTimes) {
-            StartCoroutine(SpawnPinCoroutine(t));
+        foreach (Spawn s in spawnCoins) {
+            StartCoroutine(CoinSpawnCoroutine(s));
         }
 
-        foreach (float t in meteorSpawnTimes) {
-            StartCoroutine(SpawnMeteorCoroutine(t));
+        foreach (Spawn s in spawnPins) {
+            StartCoroutine(SpawnPinCoroutine(s));
+        }
+
+        foreach (Spawn s in spawnMeteors) {
+            StartCoroutine(SpawnMeteorCoroutine(s));
         }
 
         List<Transform> playerSpawns = new List<Transform>(playerSpawnpoints);
@@ -133,18 +134,28 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private IEnumerator SpawnMeteorCoroutine(float delay) {
-        yield return new WaitForSeconds(delay);
-        Transform meteorSpawnpoint = meteorSpawnpoints[Random.Range(0, meteorSpawnpoints.Count)];
-        Vector3 angles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
-        Meteor meteor = Instantiate(meteorPrefab, meteorSpawnpoint.position, Quaternion.Euler(angles)).GetComponent<Meteor>();
-        meteor.Initialize(meteorSpawnpoint.forward);
+    private IEnumerator SpawnMeteorCoroutine(Spawn spawn) {
+        yield return new WaitForSeconds(spawn.time);
+        List<Transform> spawns = new List<Transform>(meteorSpawnpoints);
+        for (int i = 0; i < spawn.amount; i++) {
+            if (spawns.Count == 0) break;
+            int spawnIndex = Random.Range(0, spawns.Count);
+            Vector3 angles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+            Meteor meteor = Instantiate(meteorPrefab, meteorSpawnpoints[spawnIndex].position, Quaternion.Euler(angles)).GetComponent<Meteor>();
+            meteor.Initialize(meteorSpawnpoints[spawnIndex].forward);
+            spawns.RemoveAt(spawnIndex);
+        }
     }
 
-    private IEnumerator SpawnPinCoroutine(float delay) {
-        yield return new WaitForSeconds(delay);
-        Transform pinSpawnpoint = pinSpawnpoints[Random.Range(0, pinSpawnpoints.Count)];
-        Instantiate(pinPrefab, pinSpawnpoint.position, pinSpawnpoint.rotation);
+    private IEnumerator SpawnPinCoroutine(Spawn spawn) {
+        yield return new WaitForSeconds(spawn.time);
+        List<Transform> spawns = new List<Transform>(pinSpawnpoints);
+        for (int i = 0; i < spawn.amount; i++) {
+            if (spawns.Count == 0) break;
+            int spawnIndex = Random.Range(0, spawns.Count);
+            Instantiate(pinPrefab, pinSpawnpoints[spawnIndex].position, pinSpawnpoints[spawnIndex].rotation);
+            spawns.RemoveAt(spawnIndex);
+        }
     }
 
     private IEnumerator SpeechCoroutine(Speech s) {
@@ -164,10 +175,10 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private IEnumerator CoinSpawnCoroutine(SpawnCoins sc) {
-        yield return new WaitForSeconds(sc.time);
+    private IEnumerator CoinSpawnCoroutine(Spawn spawn) {
+        yield return new WaitForSeconds(spawn.time);
         List<Transform> spawns = new List<Transform>(coinSpawnpoints);
-        for (int i = 0; i < sc.amount; i++) {
+        for (int i = 0; i < spawn.amount; i++) {
             if (spawns.Count == 0) break;
             int spawnIndex = Random.Range(0, spawns.Count);
             Vector3 angles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
