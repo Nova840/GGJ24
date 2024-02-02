@@ -55,15 +55,6 @@ public class GameManager : MonoBehaviour {
     private TMP_Text speechText;
 
     [Serializable]
-    private class SpawnCoins {
-        public float time;
-        public float amount;
-    }
-
-    [SerializeField]
-    private SpawnCoins[] spawnCoins;
-
-    [Serializable]
     private class Speech {
         public float time;
         public float duration;
@@ -73,6 +64,15 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private Speech[] speech;
+
+    [Serializable]
+    private class SpawnCoins {
+        public float time;
+        public float amount;
+    }
+
+    [SerializeField]
+    private SpawnCoins[] spawnCoins;
 
     [SerializeField]
     private float[] pinSpawnTimes;
