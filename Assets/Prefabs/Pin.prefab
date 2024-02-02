@@ -93,6 +93,8 @@ MonoBehaviour:
   tilt: 0.5
   move: 20
   percentCoinsToLose: 0.1
+  obstacleColliders:
+  - {fileID: 5594998017115723372}
 --- !u!1 &4871461372325583212
 GameObject:
   m_ObjectHideFlags: 0

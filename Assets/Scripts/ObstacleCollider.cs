@@ -16,7 +16,7 @@ public class ObstacleCollider : MonoBehaviour {
     private float percentCoinsToLose = .1f;
 
     [SerializeField]
-    private Collider[] ignoreColliders;
+    private Collider[] obstacleColliders;
 
     private Rigidbody _rigidbody;
 
@@ -26,7 +26,7 @@ public class ObstacleCollider : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.collider.gameObject.layer != LayerMask.NameToLayer("Player")) return;
-        if (ignoreColliders.Contains(collision.GetContact(0).thisCollider)) return;
+        if (!obstacleColliders.Contains(collision.GetContact(0).thisCollider)) return;
         Player player = collision.collider.GetComponent<Player>();
         Vector3 direction = _rigidbody.GetPointVelocity(collision.GetContact(0).point);
         player.PlayerMove.ApplyHit(direction, tilt, move);
