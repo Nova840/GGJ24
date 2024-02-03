@@ -29,7 +29,7 @@ public class PlayerAttack : MonoBehaviour {
     }
 
     private void Update() {
-        if (player.PlayerControls.GetAttack()) {
+        if (!player.PlayerMove.Respawning && player.PlayerControls.GetAttack()) {
             Attack();
         }
     }

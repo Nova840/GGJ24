@@ -123,6 +123,10 @@ public class GameManager : MonoBehaviour {
             StartCoroutine(SpawnMeteorCoroutine(s));
         }
 
+        SpawnPlayers();
+    }
+
+    private void SpawnPlayers() {
         List<Transform> playerSpawns = new List<Transform>(playerSpawnpoints);
         for (int playerIndex = 0; playerIndex < GameInfo.GetMaxPlayers(); playerIndex++) {
             if (GameInfo.GetPlayer(playerIndex) == null) continue;
