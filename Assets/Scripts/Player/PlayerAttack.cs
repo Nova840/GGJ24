@@ -20,9 +20,14 @@ public class PlayerAttack : MonoBehaviour {
     [SerializeField]
     private AudioClip attackClip, attackHitClip;
 
+    [SerializeField]
+    private float attackCooldown;
+
     private Player player;
 
     public event Action OnAttack;
+
+    private float timeLastAttacked = Mathf.NegativeInfinity;
 
     private void Awake() {
         player = GetComponent<Player>();
@@ -35,6 +40,9 @@ public class PlayerAttack : MonoBehaviour {
     }
 
     private void Attack() {
+        if (Time.time - timeLastAttacked < attackCooldown) return;
+        timeLastAttacked = Time.time;
+
         Sound.Play(attackClip, 1);
         Collider[] hitColliders = Physics.OverlapBox(
             attackTrigger.transform.position,

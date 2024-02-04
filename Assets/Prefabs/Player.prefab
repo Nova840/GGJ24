@@ -315,6 +315,7 @@ MonoBehaviour:
   percentCoinsToLose: 0.25
   attackClip: {fileID: 8300000, guid: 3f95a0f10a294e347a5e6753cbc37084, type: 3}
   attackHitClip: {fileID: 8300000, guid: 579b6aa6de9a5984094013d9518cde94, type: 3}
+  attackCooldown: 0.2
 --- !u!114 &107463724804216036
 MonoBehaviour:
   m_ObjectHideFlags: 0
