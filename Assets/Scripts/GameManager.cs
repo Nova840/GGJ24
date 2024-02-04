@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour {
     private List<Transform> meteorSpawnpoints = new List<Transform>();
 
     [SerializeField]
+    private float meteorSpawnBackDistance;
+
+    [SerializeField]
     private float totalTime;
 
     public float TimeLeft { get; private set; }
@@ -131,7 +134,8 @@ public class GameManager : MonoBehaviour {
         for (int playerIndex = 0; playerIndex < GameInfo.GetMaxPlayers(); playerIndex++) {
             if (GameInfo.GetPlayer(playerIndex) == null) continue;
             int randomSpawn = Random.Range(0, playerSpawns.Count);
-            Player player = Instantiate(playerPrefab, playerSpawns[randomSpawn].position, playerSpawns[randomSpawn].rotation).GetComponent<Player>();
+            Transform spawnpoint = playerSpawns[randomSpawn];
+            Player player = Instantiate(playerPrefab, spawnpoint.position, spawnpoint.rotation).GetComponent<Player>();
             player.Initialize(playerIndex, (int)GameInfo.GetPlayer(playerIndex), this);
             cameraManager.AddPlayerTransform(player);
             playerSpawns.RemoveAt(randomSpawn);
@@ -145,7 +149,8 @@ public class GameManager : MonoBehaviour {
             if (spawns.Count == 0) break;
             int spawnIndex = Random.Range(0, spawns.Count);
             Vector3 angles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
-            Meteor meteor = Instantiate(meteorPrefab, meteorSpawnpoints[spawnIndex].position, Quaternion.Euler(angles)).GetComponent<Meteor>();
+            Transform spawnpoint = meteorSpawnpoints[spawnIndex];
+            Meteor meteor = Instantiate(meteorPrefab, spawnpoint.position + -spawnpoint.forward * meteorSpawnBackDistance, Quaternion.Euler(angles)).GetComponent<Meteor>();
             meteor.Initialize(meteorSpawnpoints[spawnIndex].forward);
             spawns.RemoveAt(spawnIndex);
         }
@@ -157,7 +162,8 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < spawn.amount; i++) {
             if (spawns.Count == 0) break;
             int spawnIndex = Random.Range(0, spawns.Count);
-            Instantiate(pinPrefab, pinSpawnpoints[spawnIndex].position, pinSpawnpoints[spawnIndex].rotation);
+            Transform spawnpoint = pinSpawnpoints[spawnIndex];
+            Instantiate(pinPrefab, spawnpoint.position, spawnpoint.rotation);
             spawns.RemoveAt(spawnIndex);
         }
     }
@@ -186,7 +192,8 @@ public class GameManager : MonoBehaviour {
             if (spawns.Count == 0) break;
             int spawnIndex = Random.Range(0, spawns.Count);
             Vector3 angles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
-            Instantiate(coinPrefab, spawns[spawnIndex].position, Quaternion.Euler(angles));
+            Transform spawnpoint = spawns[spawnIndex];
+            Instantiate(coinPrefab, spawnpoint.position, Quaternion.Euler(angles));
             spawns.RemoveAt(spawnIndex);
         }
     }

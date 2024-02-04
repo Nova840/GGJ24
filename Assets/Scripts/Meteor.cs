@@ -54,6 +54,9 @@ public class Meteor : MonoBehaviour {
         if (particlesOnHitPrefab) {
             Instantiate(particlesOnHitPrefab, transform.position, particlesOnHitPrefab.transform.rotation);
         }
+
+        bool didHit = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask("Stadium"), QueryTriggerInteraction.Ignore);
+        Vector3 overlapPosition = didHit ? hit.point : transform.position;
         Player[] playersHit = Physics.OverlapSphere(transform.position, explosionRadius, LayerMask.GetMask("Player")).Select(c => c.GetComponent<Player>()).Where(r => r).ToArray();
         foreach (Player p in playersHit) {
             p.PlayerMove.ApplyHit(p.transform.position - transform.position, tilt, move);

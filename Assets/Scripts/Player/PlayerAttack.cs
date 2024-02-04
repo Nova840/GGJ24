@@ -36,23 +36,27 @@ public class PlayerAttack : MonoBehaviour {
 
     private void Attack() {
         Sound.Play(attackClip, 1);
-        Collider[] playerColliders = Physics.OverlapBox(
+        Collider[] hitColliders = Physics.OverlapBox(
             attackTrigger.transform.position,
             attackTrigger.transform.lossyScale / 2f,
             attackTrigger.transform.rotation,
-            LayerMask.GetMask("Player")
+            LayerMask.GetMask("Player", "Attackable"),
+            QueryTriggerInteraction.Collide
         );
         bool soundPlayed = false;
-        foreach (Collider c in playerColliders) {
-            if (c.isTrigger) continue;
-            Player p = c.GetComponent<Player>();
-            if (p && p == player) continue;
-            if (!soundPlayed) {
-                Sound.Play(attackHitClip, 1);
-                soundPlayed = true;
+        foreach (Collider c in hitColliders) {
+            if (c.gameObject.layer == LayerMask.NameToLayer("Player") && !c.isTrigger) {
+                Player p = c.GetComponent<Player>();
+                if (p && p == player) continue;
+                if (!soundPlayed) {
+                    Sound.Play(attackHitClip, 1);
+                    soundPlayed = true;
+                }
+                p.PlayerMove.ApplyHit(p.transform.position - transform.position, attackTilt, attackMove);
+                p.PlayerCoins.LoseCoinsByHit(percentCoinsToLose);
+            } else if (c.gameObject.layer == LayerMask.NameToLayer("Attackable")) {
+                c.GetComponent<SpawnOnAttack>().OnAttack();
             }
-            p.PlayerMove.ApplyHit(p.transform.position - transform.position, attackTilt, attackMove);
-            p.PlayerCoins.LoseCoinsByHit(percentCoinsToLose);
         }
         OnAttack?.Invoke();
     }
