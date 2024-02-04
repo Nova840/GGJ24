@@ -51,14 +51,14 @@ public class PlayerAttack : MonoBehaviour {
             LayerMask.GetMask("Player", "Attackable"),
             QueryTriggerInteraction.Collide
         );
-        bool soundPlayed = false;
+        bool hitSoundPlayed = false;
         foreach (Collider c in hitColliders) {
             if (c.gameObject.layer == LayerMask.NameToLayer("Player") && !c.isTrigger) {
                 Player p = c.GetComponent<Player>();
                 if (p && p == player) continue;
-                if (!soundPlayed) {
+                if (!hitSoundPlayed) {
                     Sound.Play(attackHitClip, 1);
-                    soundPlayed = true;
+                    hitSoundPlayed = true;
                 }
                 p.PlayerMove.ApplyHit(p.transform.position - transform.position, attackTilt, attackMove);
                 p.PlayerCoins.LoseCoinsByHit(percentCoinsToLose);
