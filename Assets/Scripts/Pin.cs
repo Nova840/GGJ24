@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pin : MonoBehaviour {
 
+    private static List<Pin> instances = new List<Pin>();
+
     [SerializeField]
     private float speed;
 
@@ -13,6 +15,9 @@ public class Pin : MonoBehaviour {
     [SerializeField]
     private AudioClip pinStickClip;
 
+    [SerializeField]
+    private int maxAllowedPins;
+
     private Rigidbody _rigidbody;
     private Collider _collider;
 
@@ -21,6 +26,11 @@ public class Pin : MonoBehaviour {
     private Quaternion initialRotation;
 
     private void Awake() {
+        instances.Add(this);
+        while (instances.Count > maxAllowedPins) {
+            Destroy(instances[0].gameObject);
+            instances.RemoveAt(0);
+        }
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponentInChildren<Collider>();
     }
@@ -55,6 +65,7 @@ public class Pin : MonoBehaviour {
     }
 
     private void OnDestroy() {
+        instances.Remove(this);
         Destroy(follow);
     }
 
