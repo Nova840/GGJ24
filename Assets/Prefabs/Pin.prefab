@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4953169937008534158}
   - component: {fileID: 4825285359996215473}
   - component: {fileID: 4711762376257477515}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1302978910285801206}
   - component: {fileID: 5594998017115723372}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,6 +217,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SM_Pin_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7385610a27a88409a93fa8a521eb53a2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
