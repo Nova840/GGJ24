@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class EndManager : MonoBehaviour {
 
@@ -40,9 +41,14 @@ public class EndManager : MonoBehaviour {
             endPlayers[i].GetComponentInChildren<Renderer>().material = endPlayerMaterials[winners[i]];
         }
 
-        for (int i = 0; i < endPlayers.Length; i++) {
+        if (Random.Range(0, 2) == 0) {
+            endPlayers[0].GetComponentInChildren<Animator>().Play("Salsa", 0, 0);
+        } else {
+            endPlayers[0].GetComponentInChildren<Animator>().Play("Laugh", 0, 0);
+        }
+        for (int i = 1; i < endPlayers.Length; i++) {
             if (!endPlayers[i].activeInHierarchy) continue;
-            endPlayers[i].GetComponentInChildren<Animator>().Play("Stand", 0, (float)i / endPlayers.Length);
+            endPlayers[i].GetComponentInChildren<Animator>().Play("Defeat", 0, (float)i - 1 / endPlayers.Length - 1);
         }
     }
 
