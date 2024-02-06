@@ -24,6 +24,9 @@ public class PlayerCoins : MonoBehaviour {
     private float fallCoinLaunchSpeed;
 
     [SerializeField]
+    private float coinLaunchAngularSpeed;
+
+    [SerializeField]
     private float coinLaunchInterval;
 
     [SerializeField]
@@ -76,7 +79,9 @@ public class PlayerCoins : MonoBehaviour {
             Vector2 randomOnCircle = Random.insideUnitCircle.normalized;
             Vector3 randomOnCircleXZ = new Vector3(randomOnCircle.x, 0, randomOnCircle.y);
             Vector3 direction = Vector3.Slerp(Vector3.up, randomOnCircleXZ, Random.Range(hitCoinLaunchMinDegrees, hitCoinLaunchMaxDegrees) / 90f);
-            LaunchCoin(coin, direction, hitCoinLaunchSpeed);
+            Vector3 coinLaunchVelocity = direction * fallCoinLaunchSpeed;
+
+            LaunchCoin(coin, coinLaunchVelocity);
 
             yield return new WaitForSeconds(coinLaunchInterval);
         }
@@ -101,12 +106,15 @@ public class PlayerCoins : MonoBehaviour {
         Vector3 direction45 = Vector3.Slerp(Vector3.up, -fromGroundToPlayerXZ, .5f);
         Vector3 randomOnUnitCircleOnPlane = Vector3.ProjectOnPlane(Random.onUnitSphere, direction45).normalized;
         Vector3 direction = Vector3.Slerp(direction45, randomOnUnitCircleOnPlane, Random.Range(fallCoinLaunchMinDegrees, fallCoinLaunchMaxDegrees) / 90f);
+        Vector3 coinLaunchVelocity = direction * fallCoinLaunchSpeed;
 
-        LaunchCoin(coin, direction, fallCoinLaunchSpeed);
+        LaunchCoin(coin, coinLaunchVelocity);
     }
 
-    private void LaunchCoin(Coin coin, Vector3 direction, float coinLaunchSpeed) {
-        coin.GetComponent<Rigidbody>().velocity = direction * coinLaunchSpeed;
+    private void LaunchCoin(Coin coin, Vector3 coinLaunchVelocity) {
+        Rigidbody r = coin.GetComponent<Rigidbody>();
+        r.velocity = coinLaunchVelocity;
+        r.angularVelocity = Random.onUnitSphere * coinLaunchAngularSpeed;
     }
 
     private Coin CreateCoin(Vector3 spawnPosition) {

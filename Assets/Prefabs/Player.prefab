@@ -337,6 +337,7 @@ MonoBehaviour:
   fallCoinLaunchMaxDegrees: 45
   hitCoinLaunchSpeed: 10
   fallCoinLaunchSpeed: 10
+  coinLaunchAngularSpeed: 10
   coinLaunchInterval: 0.25
   killYDepth: -2
   percentCoinsToLoseByFall: 0.5

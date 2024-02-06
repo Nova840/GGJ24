@@ -48,6 +48,9 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private float totalTime;
 
+    [SerializeField]
+    private float coinSpawnAngularSpeed;
+
     public float TimeLeft { get; private set; }
 
     public event Action<float> OnTimeLeftChange;
@@ -193,7 +196,8 @@ public class GameManager : MonoBehaviour {
             int spawnIndex = Random.Range(0, spawns.Count);
             Vector3 angles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
             Transform spawnpoint = spawns[spawnIndex];
-            Instantiate(coinPrefab, spawnpoint.position, Quaternion.Euler(angles));
+            GameObject coin = Instantiate(coinPrefab, spawnpoint.position, Quaternion.Euler(angles));
+            coin.GetComponent<Rigidbody>().angularVelocity = Random.onUnitSphere * coinSpawnAngularSpeed;
             spawns.RemoveAt(spawnIndex);
         }
     }

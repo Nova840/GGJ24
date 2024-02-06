@@ -1775,6 +1775,7 @@ MonoBehaviour:
   meteorSpawnpointsContainer: {fileID: 449608697}
   meteorSpawnBackDistance: 15
   totalTime: 180
+  coinSpawnAngularSpeed: 2.5
   enableWhenSpeech:
   - {fileID: 685573089}
   speechText: {fileID: 1313523437}
