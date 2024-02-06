@@ -1,5 +1,4 @@
 using Lightbug.CharacterControllerPro.Core;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +12,20 @@ public class PlayerAnimations : MonoBehaviour {
     [SerializeField]
     private float punchBlendInTime;
 
+    [SerializeField]
+    private string[] tauntNames;
+
+    [SerializeField]
+    private float tauntTime;
+
+    [SerializeField]
+    private float tauntBlendTime;
+
     private Player player;
     private CharacterActor characterActor;
     private Animator animator;
+
+    public bool Taunting { get; private set; } = false;
 
     private void Awake() {
         player = GetComponent<Player>();
@@ -36,6 +46,18 @@ public class PlayerAnimations : MonoBehaviour {
         Vector3 XZSpeed = characterActor.Velocity;
         XZSpeed.y = 0;
         animator.SetFloat("Speed", XZSpeed.magnitude / player.PlayerMove.MoveSpeed);
+        if (!Taunting && player.PlayerControls.GetTaunt()) {
+            StartCoroutine(TauntCoroutine());
+        }
+    }
+
+    private IEnumerator TauntCoroutine() {
+        Taunting = true;
+        animator.CrossFadeInFixedTime(tauntNames[Random.Range(0, tauntNames.Length)], tauntBlendTime, 0);
+        animator.CrossFadeInFixedTime("Empty", tauntBlendTime, 1);
+        yield return new WaitForSeconds(tauntTime);
+        animator.CrossFadeInFixedTime("Movement", tauntBlendTime, 0);
+        Taunting = false;
     }
 
 }

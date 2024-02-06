@@ -355,6 +355,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kickBlendInTime: 0.25
   punchBlendInTime: 0.25
+  tauntNames:
+  - Pose
+  - Salsa
+  - Laugh
+  tauntTime: 2
+  tauntBlendTime: 0.25
 --- !u!114 &6055161346361104129
 MonoBehaviour:
   m_ObjectHideFlags: 0

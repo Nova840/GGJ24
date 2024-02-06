@@ -12,6 +12,7 @@ public class PlayerControls : MonoBehaviour {
     }
 
     public Vector2 GetMove() {
+        if (player.PlayerAnimations.Taunting) return Vector2.zero;
         Vector2 inputVector;
         if (player.PlayerInput == -1) {
             inputVector = new Vector2(Keyboard.current.dKey.value - Keyboard.current.aKey.value, Keyboard.current.wKey.value - Keyboard.current.sKey.value);
@@ -25,6 +26,7 @@ public class PlayerControls : MonoBehaviour {
     }
 
     public bool GetJump() {
+        if (player.PlayerAnimations.Taunting) return false;
         if (player.PlayerInput == -1) {
             return Keyboard.current.spaceKey.wasPressedThisFrame;
         } else if (player.PlayerInput == -2) {
@@ -35,12 +37,24 @@ public class PlayerControls : MonoBehaviour {
     }
 
     public bool GetAttack() {
+        if (player.PlayerAnimations.Taunting) return false;
         if (player.PlayerInput == -1) {
             return Keyboard.current.bKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame;
         } else if (player.PlayerInput == -2) {
             return Keyboard.current.periodKey.wasPressedThisFrame;
         } else {
             return Gamepad.all[player.PlayerInput].buttonWest.wasPressedThisFrame;
+        }
+    }
+
+    public bool GetTaunt() {
+        if (player.PlayerAnimations.Taunting) return false;
+        if (player.PlayerInput == -1) {
+            return Keyboard.current.nKey.wasPressedThisFrame;
+        } else if (player.PlayerInput == -2) {
+            return Keyboard.current.slashKey.wasPressedThisFrame;
+        } else {
+            return Gamepad.all[player.PlayerInput].buttonNorth.wasPressedThisFrame;
         }
     }
 
