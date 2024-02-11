@@ -26,6 +26,8 @@ public class Coin : MonoBehaviour {
 
     private float timeCreated;
 
+    private bool destroying = false;
+
     private void Start() {
         timeCreated = Time.time;
     }
@@ -35,6 +37,7 @@ public class Coin : MonoBehaviour {
     }
 
     public void PickUp() {
+        destroying = true;
         Sound.Play(pickupSound);
         Destroy(gameObject);
     }
@@ -52,6 +55,9 @@ public class Coin : MonoBehaviour {
     }
 
     public bool CanPlayerPickUp(int playerIndex) {
+        if (destroying) {
+            return false;
+        }
         float delay = playerIndex == this.playerIndex ? samePlayerPickupDelay : otherPlayerPickupDelay;
         if (Time.time - timeCreated < delay) {
             return false;
