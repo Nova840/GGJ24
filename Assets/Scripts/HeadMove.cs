@@ -5,16 +5,16 @@ using UnityEngine;
 public class HeadMove : MonoBehaviour {
 
     [SerializeField]
-    private float noiseScale = .1f;
+    private float noiseScale;
 
     [SerializeField]
-    private float noiseStrength = .25f;
+    private float noiseStrength;
 
     [SerializeField]
-    private float noiseScaleRotate = .1f;
+    private float noiseScaleRotate;
 
     [SerializeField]
-    private float noiseStrengthRotate = 10;
+    private float noiseStrengthRotate;
 
     private Vector3 initialPosition;
 

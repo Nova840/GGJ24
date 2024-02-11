@@ -293,10 +293,16 @@ MonoBehaviour:
   hitRecovery: 50
   rotatePointSmoothSpeed: 5
   respawnDelay: 3
-  deathScreams:
-  - {fileID: 8300000, guid: e33152abaf8ebe047b651a2172d87448, type: 3}
-  - {fileID: 8300000, guid: 9e193d73945dc2541a314bb976a6d9b9, type: 3}
-  - {fileID: 8300000, guid: e9dda956d445399408ec84f35c2566a4, type: 3}
+  deathScreamSounds:
+  - clip: {fileID: 8300000, guid: e33152abaf8ebe047b651a2172d87448, type: 3}
+    volume: 1
+    randomPitchVariation: 0
+  - clip: {fileID: 8300000, guid: 9e193d73945dc2541a314bb976a6d9b9, type: 3}
+    volume: 1
+    randomPitchVariation: 0
+  - clip: {fileID: 8300000, guid: e9dda956d445399408ec84f35c2566a4, type: 3}
+    volume: 1
+    randomPitchVariation: 0
 --- !u!114 &2133795424575179326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,8 +319,14 @@ MonoBehaviour:
   attackTilt: 0.5
   attackMove: 20
   percentCoinsToLose: 0.25
-  attackClip: {fileID: 8300000, guid: 3f95a0f10a294e347a5e6753cbc37084, type: 3}
-  attackHitClip: {fileID: 8300000, guid: 579b6aa6de9a5984094013d9518cde94, type: 3}
+  attackSound:
+    clip: {fileID: 8300000, guid: 3f95a0f10a294e347a5e6753cbc37084, type: 3}
+    volume: 1
+    randomPitchVariation: 0.1
+  attackHitSound:
+    clip: {fileID: 8300000, guid: 579b6aa6de9a5984094013d9518cde94, type: 3}
+    volume: 1
+    randomPitchVariation: 0.1
   attackCooldown: 0.2
 --- !u!114 &107463724804216036
 MonoBehaviour:

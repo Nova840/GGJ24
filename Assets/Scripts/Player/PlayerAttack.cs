@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour {
     private float percentCoinsToLose;
 
     [SerializeField]
-    private AudioClip attackClip, attackHitClip;
+    private SoundParams attackSound, attackHitSound;
 
     [SerializeField]
     private float attackCooldown;
@@ -43,7 +43,7 @@ public class PlayerAttack : MonoBehaviour {
         if (Time.time - timeLastAttacked < attackCooldown) return;
         timeLastAttacked = Time.time;
 
-        Sound.Play(attackClip);
+        Sound.Play(attackSound);
         Collider[] hitColliders = Physics.OverlapBox(
             attackTrigger.transform.position,
             attackTrigger.transform.lossyScale / 2f,
@@ -57,7 +57,7 @@ public class PlayerAttack : MonoBehaviour {
                 Player p = c.GetComponent<Player>();
                 if (p && p == player) continue;
                 if (!hitSoundPlayed) {
-                    Sound.Play(attackHitClip);
+                    Sound.Play(attackHitSound);
                     hitSoundPlayed = true;
                 }
                 p.PlayerMove.ApplyHit(p.transform.position - transform.position, attackTilt, attackMove);

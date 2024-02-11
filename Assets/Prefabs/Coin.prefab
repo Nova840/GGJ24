@@ -79,7 +79,7 @@ Transform:
   m_GameObject: {fileID: 5635149730287488486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0020001214, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -183,15 +183,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   samePlayerPickupDelay: 1
   otherPlayerPickupDelay: 1
-  pickupClip: {fileID: 8300000, guid: 46508a482dfc16340ab5910b127b44e5, type: 3}
+  pickupSound:
+    clip: {fileID: 8300000, guid: 46508a482dfc16340ab5910b127b44e5, type: 3}
+    volume: 1
+    randomPitchVariation: 0
   bounceSoundVelocityThreshold: 5
   layersToMakeBounceSound:
     serializedVersion: 2
     m_Bits: 4023
-  coinBounceClips:
-  - {fileID: 8300000, guid: f7184a5c14c86f04d9acde01dc367b58, type: 3}
-  - {fileID: 8300000, guid: 2181715a845ed1c49bf0f75afad370fd, type: 3}
-  - {fileID: 8300000, guid: 6017138c13e4beb4ea36835eadc36513, type: 3}
+  coinBounceSounds:
+  - clip: {fileID: 8300000, guid: f7184a5c14c86f04d9acde01dc367b58, type: 3}
+    volume: 1
+    randomPitchVariation: 0.1
+  - clip: {fileID: 8300000, guid: 2181715a845ed1c49bf0f75afad370fd, type: 3}
+    volume: 1
+    randomPitchVariation: 0.1
+  - clip: {fileID: 8300000, guid: 6017138c13e4beb4ea36835eadc36513, type: 3}
+    volume: 1
+    randomPitchVariation: 0.1
 --- !u!1001 &8321248612317546739
 PrefabInstance:
   m_ObjectHideFlags: 0

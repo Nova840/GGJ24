@@ -24,7 +24,7 @@ public class Meteor : MonoBehaviour {
     private float percentCoinsLose = .5f;
 
     [SerializeField]
-    private AudioClip hitGroundClip;
+    private SoundParams hitGroundSound;
 
     [SerializeField]
     private float minRotateSpeeed, maxRotateSpeeed;
@@ -62,7 +62,7 @@ public class Meteor : MonoBehaviour {
             p.PlayerMove.ApplyHit(p.transform.position - transform.position, tilt, move);
             p.PlayerCoins.LoseCoinsByHit(percentCoinsLose);
         }
-        Sound.Play(hitGroundClip);
+        Sound.Play(hitGroundSound);
         Destroy(gameObject);
     }
 

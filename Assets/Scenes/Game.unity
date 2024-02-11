@@ -2601,39 +2601,66 @@ MonoBehaviour:
   - time: 0
     duration: 5
     text: The nasty little dolls are fighting again.
-    sound: {fileID: 8300000, guid: 7150dfd4e9f53d24893a4627e99d44e4, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: 7150dfd4e9f53d24893a4627e99d44e4, type: 3}
+      volume: 1
+      randomPitchVariation: 0
   - time: 20
     duration: 4
     text: This is not worth our time.
-    sound: {fileID: 8300000, guid: afcbdfc250d66944e98f0184e7eb3a8f, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: afcbdfc250d66944e98f0184e7eb3a8f, type: 3}
+      volume: 1
+      randomPitchVariation: 0
   - time: 45
     duration: 4
     text: We need a cigarette.
-    sound: {fileID: 8300000, guid: c7f76d3dbd8e4344f89defb45c179c2a, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: c7f76d3dbd8e4344f89defb45c179c2a, type: 3}
+      volume: 1
+      randomPitchVariation: 0
   - time: 70
     duration: 4
     text: We don't like this game.
-    sound: {fileID: 8300000, guid: 01c90aa225fefc842b544991504a0ced, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: 01c90aa225fefc842b544991504a0ced, type: 3}
+      volume: 1
+      randomPitchVariation: 0
   - time: 95
     duration: 4
     text: This is giving us diarrhea.
-    sound: {fileID: 8300000, guid: aa8790e7d73a8d74b824ec1fea36ca63, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: aa8790e7d73a8d74b824ec1fea36ca63, type: 3}
+      volume: 1
+      randomPitchVariation: 0
   - time: 110
     duration: 4
     text: DEATH! To all of them
-    sound: {fileID: 8300000, guid: 574c61537ffc19e48ab74a2e81763325, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: 574c61537ffc19e48ab74a2e81763325, type: 3}
+      volume: 1
+      randomPitchVariation: 0
   - time: 125
     duration: 4
     text: Who would enjoy this?
-    sound: {fileID: 8300000, guid: 258c68d49210f8d41ba4b5bf0233dd93, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: 258c68d49210f8d41ba4b5bf0233dd93, type: 3}
+      volume: 1
+      randomPitchVariation: 0
   - time: 140
     duration: 4
     text: Y'all have crazy beef.
-    sound: {fileID: 8300000, guid: 3705877a13f69b347b550c77c870d270, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: 3705877a13f69b347b550c77c870d270, type: 3}
+      volume: 1
+      randomPitchVariation: 0
   - time: 161.3
     duration: 4
     text: Baby, we are tired.
-    sound: {fileID: 8300000, guid: 7dd16f6f46132fe4eac94ea66a098ad1, type: 3}
+    sound:
+      clip: {fileID: 8300000, guid: 7dd16f6f46132fe4eac94ea66a098ad1, type: 3}
+      volume: 1
+      randomPitchVariation: 0
   spawnCoins:
   - time: 0
     amount: 5

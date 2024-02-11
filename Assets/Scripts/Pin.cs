@@ -13,7 +13,7 @@ public class Pin : MonoBehaviour {
     private float destroyAfterIfNoHit;
 
     [SerializeField]
-    private AudioClip pinStickClip;
+    private SoundParams pinStickSound;
 
     [SerializeField]
     private int maxAllowedPins;
@@ -47,7 +47,7 @@ public class Pin : MonoBehaviour {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player")) return;
         _rigidbody.isKinematic = true;
         Destroy(_collider);
-        Sound.Play(pinStickClip);
+        Sound.Play(pinStickSound);
 
         follow = new GameObject();
         follow.transform.SetPositionAndRotation(transform.position, transform.rotation);
