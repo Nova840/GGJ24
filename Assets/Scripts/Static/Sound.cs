@@ -4,21 +4,12 @@ using UnityEngine;
 
 public static class Sound {
 
-    private static GameObject soundPrefab;
-
-    public static void Play(AudioClip clip, float volume) {
-        LoadSoundPrefabIfNone();
-        AudioSource sound = Object.Instantiate(soundPrefab).GetComponent<AudioSource>();
+    public static void Play(AudioClip clip, float volume = 1) {
+        AudioSource sound = new GameObject("Sound: " + clip.name).AddComponent<AudioSource>();
         sound.clip = clip;
         sound.volume = volume;
         sound.Play();
         Object.Destroy(sound.gameObject, clip.length);
-    }
-
-    public static void LoadSoundPrefabIfNone() {
-        if (!soundPrefab) {
-            soundPrefab = Resources.Load<GameObject>("Sound");
-        }
     }
 
 }

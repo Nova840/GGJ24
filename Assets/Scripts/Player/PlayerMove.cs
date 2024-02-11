@@ -58,7 +58,7 @@ public class PlayerMove : MonoBehaviour {
         characterActor.ColliderComponent.enabled = !respawning;
         spotlight.gameObject.SetActive(!respawning);
         if (respawning) {
-            Sound.Play(deathScreams[Random.Range(0, deathScreams.Length)], 1);
+            Sound.Play(deathScreams[Random.Range(0, deathScreams.Length)]);
             characterActor.Teleport(player.GameManager.GetRandomPlayerSpawnpoint());
             currentYVelocity = 0;
             smoothMoveVectorXZ = Vector3.zero;

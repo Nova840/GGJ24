@@ -47,7 +47,7 @@ public class Pin : MonoBehaviour {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player")) return;
         _rigidbody.isKinematic = true;
         Destroy(_collider);
-        Sound.Play(pinStickClip, 1);
+        Sound.Play(pinStickClip);
 
         follow = new GameObject();
         follow.transform.SetPositionAndRotation(transform.position, transform.rotation);

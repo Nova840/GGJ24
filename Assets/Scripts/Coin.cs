@@ -35,7 +35,7 @@ public class Coin : MonoBehaviour {
     }
 
     public void PickUp() {
-        Sound.Play(pickupClip, 1);
+        Sound.Play(pickupClip);
         Destroy(gameObject);
     }
 
@@ -48,7 +48,7 @@ public class Coin : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         if (!layersToMakeBounceSound.IsInMask(collision.gameObject.layer)) return;
         if (collision.relativeVelocity.magnitude < bounceSoundVelocityThreshold) return;
-        Sound.Play(coinBounceClips[Random.Range(0, coinBounceClips.Length)], 1);
+        Sound.Play(coinBounceClips[Random.Range(0, coinBounceClips.Length)]);
     }
 
     public bool CanPlayerPickUp(int playerIndex) {

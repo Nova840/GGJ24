@@ -62,7 +62,7 @@ public class Meteor : MonoBehaviour {
             p.PlayerMove.ApplyHit(p.transform.position - transform.position, tilt, move);
             p.PlayerCoins.LoseCoinsByHit(percentCoinsLose);
         }
-        Sound.Play(hitGroundClip, 1);
+        Sound.Play(hitGroundClip);
         Destroy(gameObject);
     }
 

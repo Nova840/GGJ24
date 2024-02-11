@@ -175,7 +175,7 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSeconds(s.time);
         speechText.text = s.text;
         if (s.sound) {
-            Sound.Play(s.sound, 1);
+            Sound.Play(s.sound);
         }
         ToggleSpeech(true);
         yield return new WaitForSeconds(s.duration);
