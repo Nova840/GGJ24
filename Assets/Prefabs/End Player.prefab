@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9150641813981058144}
+  - component: {fileID: 487693204628547645}
   m_Layer: 0
   m_Name: End Player
   m_TagString: Untagged
@@ -32,6 +33,27 @@ Transform:
   - {fileID: 3949837886093434831}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &487693204628547645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6759843636903202033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b0de30b1cdde240959aa3d8d2ca4e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  endManager: {fileID: 0}
+  endPlayerIndex: 0
+  endPlayerMaterials:
+  - {fileID: 2100000, guid: bf0fbf04a587146ba895dd8cf7df4a8e, type: 2}
+  - {fileID: 2100000, guid: eda56c7e8f38344ec8936406b89cba0c, type: 2}
+  - {fileID: 2100000, guid: f63bc3b8bdf2546f5a4a33bc37528e4b, type: 2}
+  - {fileID: 2100000, guid: b4e042057336b4f668bd6ac37dfe594a, type: 2}
+  tauntDuration: 2
+  tauntTransitionDuration: 0.25
 --- !u!1001 &3556187687134689316
 PrefabInstance:
   m_ObjectHideFlags: 0
