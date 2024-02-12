@@ -187,19 +187,22 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 46508a482dfc16340ab5910b127b44e5, type: 3}
     volume: 1
     randomPitchVariation: 0
-  bounceSoundVelocityThreshold: 5
+  bounceSoundVelocityThreshold: 10
   layersToMakeBounceSound:
     serializedVersion: 2
     m_Bits: 4023
   coinBounceSounds:
-  - clip: {fileID: 8300000, guid: f7184a5c14c86f04d9acde01dc367b58, type: 3}
-    volume: 1
+  - clip: {fileID: 8300000, guid: 716881599251f7642b5d50ace06d1ab6, type: 3}
+    volume: 0.3
     randomPitchVariation: 0.1
-  - clip: {fileID: 8300000, guid: 2181715a845ed1c49bf0f75afad370fd, type: 3}
-    volume: 1
+  - clip: {fileID: 8300000, guid: bba906e341f43384291394cd7615d837, type: 3}
+    volume: 0.3
     randomPitchVariation: 0.1
-  - clip: {fileID: 8300000, guid: 6017138c13e4beb4ea36835eadc36513, type: 3}
-    volume: 1
+  - clip: {fileID: 8300000, guid: a0fa3808b04ddaf49856217fe765b27e, type: 3}
+    volume: 0.3
+    randomPitchVariation: 0.1
+  - clip: {fileID: 8300000, guid: 5c9df359fe0eccd4190d4a1e08f47a63, type: 3}
+    volume: 0.3
     randomPitchVariation: 0.1
 --- !u!1001 &8321248612317546739
 PrefabInstance:
