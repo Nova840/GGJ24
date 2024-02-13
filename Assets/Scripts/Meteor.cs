@@ -24,7 +24,7 @@ public class Meteor : MonoBehaviour {
     private float percentCoinsLose = .5f;
 
     [SerializeField]
-    private SoundParams hitGroundSound;
+    private Sound hitGroundSound;
 
     [SerializeField]
     private float minRotateSpeeed, maxRotateSpeeed;

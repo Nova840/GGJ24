@@ -13,7 +13,7 @@ public class Pin : MonoBehaviour {
     private float destroyAfterIfNoHit;
 
     [SerializeField]
-    private SoundParams pinStickSound;
+    private Sound pinStickSound;
 
     [SerializeField]
     private int maxAllowedPins;

@@ -11,7 +11,7 @@ public class Coin : MonoBehaviour {
     private float otherPlayerPickupDelay;
 
     [SerializeField]
-    private SoundParams pickupSound;
+    private Sound pickupSound;
 
     [SerializeField]
     private float bounceSoundVelocityThreshold;
@@ -20,7 +20,7 @@ public class Coin : MonoBehaviour {
     private LayerMask layersToMakeBounceSound;
 
     [SerializeField]
-    private SoundParams[] coinBounceSounds;
+    private Sound[] coinBounceSounds;
 
     private int playerIndex = -1;//-1 means environment spawned it
 
@@ -51,7 +51,7 @@ public class Coin : MonoBehaviour {
     private void OnCollisionEnter(Collision collision) {
         if (!layersToMakeBounceSound.IsInMask(collision.gameObject.layer)) return;
         if (collision.relativeVelocity.magnitude < bounceSoundVelocityThreshold) return;
-        Sound.Play(coinBounceSounds[Random.Range(0, coinBounceSounds.Length)]);
+        Sound.Play(coinBounceSounds);
     }
 
     public bool CanPlayerPickUp(int playerIndex) {

@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour {
     private float percentCoinsToLose;
 
     [SerializeField]
-    private SoundParams attackSound, attackHitSound;
+    private Sound attackSound, attackHitSound;
 
     [SerializeField]
     private float attackCooldown;

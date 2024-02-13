@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour {
         public float time;
         public float duration;
         public string text;
-        public SoundParams sound;
+        public Sound sound;
     }
 
     [SerializeField]
