@@ -13,7 +13,7 @@ public class Sound {
     [Range(0, 1)]
     public float volume = 1;
 
-    [Range(0, 1)]
+    [Range(0, .99f)]
     public float randomPitchVariation = 0;
 
     public static void Play(Sound[] sounds) => Play(sounds[Random.Range(0, sounds.Length)]);
@@ -24,7 +24,7 @@ public class Sound {
         source.volume = volume;
         source.pitch = 1 + Random.Range(-randomPitchVariation, randomPitchVariation);
         source.Play();
-        Object.Destroy(source.gameObject, clip.length * source.pitch);
+        Object.Destroy(source.gameObject, clip.length / source.pitch);
     }
 
 }
