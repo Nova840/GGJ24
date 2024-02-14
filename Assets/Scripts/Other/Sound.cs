@@ -13,7 +13,7 @@ public class Sound {
     [Range(0, 1)]
     public float volume = 1;
 
-    [Range(0, 3)]
+    [Range(0, 2)]
     public float randomPitchVariation = 0;
 
     public static void Play(Sound[] sounds) => Play(sounds[Random.Range(0, sounds.Length)]);
