@@ -59,8 +59,7 @@ public class Meteor : MonoBehaviour {
         Vector3 overlapPosition = didHit ? hit.point : transform.position;
         Player[] playersHit = Physics.OverlapSphere(transform.position, explosionRadius, LayerMask.GetMask("Player")).Select(c => c.GetComponent<Player>()).Where(r => r).ToArray();
         foreach (Player p in playersHit) {
-            p.PlayerMove.ApplyHit(p.transform.position - transform.position, tilt, move);
-            p.PlayerCoins.LoseCoinsByHit(percentCoinsLose);
+            p.PlayerMove.ApplyHit(p.transform.position - transform.position, tilt, move, percentCoinsLose);
         }
         Sound.Play(hitGroundSound);
         Destroy(gameObject);

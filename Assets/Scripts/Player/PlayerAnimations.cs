@@ -7,10 +7,10 @@ using Random = UnityEngine.Random;
 public class PlayerAnimations : MonoBehaviour {
 
     [SerializeField]
-    private float kickBlendInTime;
+    private float kickBlendTime;
 
     [SerializeField]
-    private float punchBlendInTime;
+    private float punchBlendTime;
 
     [SerializeField]
     private string[] tauntNames;
@@ -31,14 +31,14 @@ public class PlayerAnimations : MonoBehaviour {
         player = GetComponent<Player>();
         characterActor = GetComponent<CharacterActor>();
         animator = GetComponentInChildren<Animator>();
-        player.PlayerPunch.OnAttack += OnPunch;
+        player.PlayerPunch.OnAttack += OnAttack;
     }
 
-    private void OnPunch() {
+    private void OnAttack() {
         if (Random.Range(0, 2) == 0) {
-            animator.CrossFadeInFixedTime("Punch", punchBlendInTime, 1);
+            animator.CrossFadeInFixedTime("Punch", punchBlendTime, 1);
         } else {
-            animator.CrossFadeInFixedTime("Kick", kickBlendInTime, 0);
+            animator.CrossFadeInFixedTime("Kick", kickBlendTime, 0);
         }
     }
 

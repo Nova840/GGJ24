@@ -60,8 +60,7 @@ public class PlayerAttack : MonoBehaviour {
                     Sound.Play(attackHitSound);
                     hitSoundPlayed = true;
                 }
-                p.PlayerMove.ApplyHit(p.transform.position - transform.position, attackTilt, attackMove);
-                p.PlayerCoins.LoseCoinsByHit(percentCoinsToLose);
+                p.PlayerMove.ApplyHit(p.transform.position - transform.position, attackTilt, attackMove, percentCoinsToLose);
             } else if (c.gameObject.layer == LayerMask.NameToLayer("Attackable")) {
                 c.GetComponent<SpawnOnAttack>().OnAttack();
             }

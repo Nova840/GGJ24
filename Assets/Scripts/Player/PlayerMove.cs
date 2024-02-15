@@ -39,6 +39,9 @@ public class PlayerMove : MonoBehaviour {
     [SerializeField]
     private Sound[] deathScreamSounds;
 
+    [SerializeField]
+    private float hitInvincibilityDelay;
+
     private Player player;
     private Camera mainCamera;
     private CharacterActor characterActor;
@@ -47,6 +50,8 @@ public class PlayerMove : MonoBehaviour {
     private float currentYVelocity = 0;
     private Vector3 smoothMoveVectorXZ = Vector3.zero;
     private Vector3 hitMoveVelocityXZ = Vector3.zero;
+
+    private float timeLastHit = Mathf.NegativeInfinity;
 
     private Vector3 rotationPointUpDirection;
 
@@ -123,7 +128,10 @@ public class PlayerMove : MonoBehaviour {
         }
     }
 
-    public void ApplyHit(Vector3 hitDirection, float rotateStrength, float moveStrength) {
+    public void ApplyHit(Vector3 hitDirection, float rotateStrength, float moveStrength, float percentCoinsToLose) {
+        if (Time.time - timeLastHit < hitInvincibilityDelay) return;
+        timeLastHit = Time.time;
+        
         hitDirection.y = 0;
         hitDirection = hitDirection.normalized;
         if (hitDirection == Vector3.zero) return;
@@ -131,6 +139,7 @@ public class PlayerMove : MonoBehaviour {
         rotationPointUpDirection = rotateUpDir;
         rotationPoint.rotation = Quaternion.LookRotation(rotationPointUpDirection, transform.forward) * Quaternion.Euler(-90, 180, 0);
         hitMoveVelocityXZ += hitDirection * moveStrength;
+        player.PlayerCoins.LoseCoinsByHit(percentCoinsToLose);
     }
 
 }

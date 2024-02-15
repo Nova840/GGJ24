@@ -29,8 +29,7 @@ public class ObstacleCollider : MonoBehaviour {
         if (!obstacleColliders.Contains(collision.GetContact(0).thisCollider)) return;
         Player player = collision.collider.GetComponent<Player>();
         Vector3 direction = _rigidbody.GetPointVelocity(collision.GetContact(0).point);
-        player.PlayerMove.ApplyHit(direction, tilt, move);
-        player.PlayerCoins.LoseCoinsByHit(percentCoinsToLose);
+        player.PlayerMove.ApplyHit(direction, tilt, move, percentCoinsToLose);
     }
 
 }

@@ -303,6 +303,7 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: e9dda956d445399408ec84f35c2566a4, type: 3}
     volume: 1
     randomPitchVariation: 0
+  hitInvincibilityDelay: 0.1
 --- !u!114 &2133795424575179326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,8 +366,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8bca3f4e5fe75448294763d12bc775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kickBlendInTime: 0.25
-  punchBlendInTime: 0.25
+  kickBlendTime: 0.25
+  punchBlendTime: 0.25
   tauntNames:
   - Pose
   - Salsa
