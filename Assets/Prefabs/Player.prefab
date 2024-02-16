@@ -374,6 +374,10 @@ MonoBehaviour:
   - Laugh
   tauntTime: 2
   tauntBlendTime: 0.25
+  standingJumpBlendTime: 0.1
+  runningJumpBlendTime: 0.1
+  fallBlendTime: 0.25
+  landingBlendTime: 0.1
 --- !u!114 &6055161346361104129
 MonoBehaviour:
   m_ObjectHideFlags: 0

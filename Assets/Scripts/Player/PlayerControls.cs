@@ -1,3 +1,4 @@
+using Lightbug.CharacterControllerPro.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,11 @@ using UnityEngine.InputSystem;
 public class PlayerControls : MonoBehaviour {
 
     private Player player;
+    private CharacterActor characterActor;
 
     private void Awake() {
         player = GetComponent<Player>();
+        characterActor = GetComponent<CharacterActor>();
     }
 
     public Vector2 GetMove() {
@@ -49,6 +52,7 @@ public class PlayerControls : MonoBehaviour {
 
     public bool GetTaunt() {
         if (player.PlayerAnimations.Taunting) return false;
+        if (!characterActor.IsGrounded) return false;
         if (player.PlayerInput == -1) {
             return Keyboard.current.nKey.wasPressedThisFrame;
         } else if (player.PlayerInput == -2) {

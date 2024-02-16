@@ -10,14 +10,14 @@ public class Player : MonoBehaviour {
 
     public PlayerControls PlayerControls { get; private set; }
     public PlayerMove PlayerMove { get; private set; }
-    public PlayerAttack PlayerPunch { get; private set; }
+    public PlayerAttack PlayerAttack { get; private set; }
     public PlayerCoins PlayerCoins { get; private set; }
     public PlayerAnimations PlayerAnimations { get; private set; }
 
     private void Awake() {
         PlayerControls = GetComponent<PlayerControls>();
         PlayerMove = GetComponent<PlayerMove>();
-        PlayerPunch = GetComponent<PlayerAttack>();
+        PlayerAttack = GetComponent<PlayerAttack>();
         PlayerCoins = GetComponent<PlayerCoins>();
         PlayerAnimations = GetComponent<PlayerAnimations>();
     }

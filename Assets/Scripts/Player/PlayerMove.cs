@@ -1,4 +1,5 @@
 using Lightbug.CharacterControllerPro.Core;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,6 +56,8 @@ public class PlayerMove : MonoBehaviour {
 
     private Vector3 rotationPointUpDirection;
 
+    public event Action OnJump;
+
     public bool Respawning { get; private set; }
     public void SetRespawning() => SetRespawning(true);
     private void SetRespawning(bool respawning) {
@@ -109,6 +112,7 @@ public class PlayerMove : MonoBehaviour {
             if (player.PlayerControls.GetJump()) {
                 characterActor.ForceNotGrounded();
                 currentYVelocity = Mathf.Sqrt(-jumpHeight * -2 * gravity);//formula to calculate velocity from jump height
+                OnJump?.Invoke();
             } else {
                 currentYVelocity = -2;
             }
