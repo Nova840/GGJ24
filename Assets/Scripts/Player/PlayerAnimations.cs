@@ -43,9 +43,9 @@ public class PlayerAnimations : MonoBehaviour {
     }
 
     private void Update() {
-        Vector3 XZSpeed = characterActor.Velocity;
-        XZSpeed.y = 0;
-        animator.SetFloat("Speed", XZSpeed.magnitude / player.PlayerMove.MoveSpeed);
+        Vector3 velocityXZ = characterActor.Velocity;
+        velocityXZ.y = 0;
+        animator.SetFloat("Speed", velocityXZ.magnitude / player.PlayerMove.MoveSpeed);
         if (!Taunting && player.PlayerControls.GetTaunt()) {
             StartCoroutine(TauntCoroutine());
         }

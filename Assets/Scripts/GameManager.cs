@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,13 +29,22 @@ public class GameManager : MonoBehaviour {
     private List<Transform> coinSpawnpoints = new List<Transform>();
 
     [SerializeField]
+    private float coinSpawnMaxRandomPosition;
+
+    [SerializeField]
     private Transform playerSpawnpointsContainer;
     private List<Transform> playerSpawnpoints = new List<Transform>();
     public Transform GetRandomPlayerSpawnpoint() => playerSpawnpoints[Random.Range(0, playerSpawnpoints.Count)];
 
     [SerializeField]
+    private float playerSpawnMaxRandomPosition;
+
+    [SerializeField]
     private Transform pinSpawnpointsContainer;
     private List<Transform> pinSpawnpoints = new List<Transform>();
+
+    [SerializeField]
+    private float pinSpawnMaxRandomAngle;
 
     [SerializeField]
     private Transform meteorSpawnpointsContainer;
@@ -44,6 +52,9 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField]
     private float meteorSpawnBackDistance;
+
+    [SerializeField]
+    private float meteorSpawnMaxRandomPosition;
 
     [SerializeField]
     private float totalTime;
@@ -138,7 +149,9 @@ public class GameManager : MonoBehaviour {
             if (GameInfo.GetPlayer(playerIndex) == null) continue;
             int randomSpawn = Random.Range(0, playerSpawns.Count);
             Transform spawnpoint = playerSpawns[randomSpawn];
-            Player player = Instantiate(playerPrefab, spawnpoint.position, spawnpoint.rotation).GetComponent<Player>();
+            Vector2 rDelta = Random.insideUnitCircle.normalized * playerSpawnMaxRandomPosition;
+            Vector3 spawnPosition = spawnpoint.position + new Vector3(rDelta.x, 0, rDelta.y);
+            Player player = Instantiate(playerPrefab, spawnPosition, spawnpoint.rotation).GetComponent<Player>();
             player.Initialize(playerIndex, (int)GameInfo.GetPlayer(playerIndex), this);
             cameraManager.AddPlayerTransform(player);
             playerSpawns.RemoveAt(randomSpawn);
@@ -153,7 +166,9 @@ public class GameManager : MonoBehaviour {
             int spawnIndex = Random.Range(0, spawns.Count);
             Vector3 angles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
             Transform spawnpoint = meteorSpawnpoints[spawnIndex];
-            Meteor meteor = Instantiate(meteorPrefab, spawnpoint.position + -spawnpoint.forward * meteorSpawnBackDistance, Quaternion.Euler(angles)).GetComponent<Meteor>();
+            Vector2 rDelta = Random.insideUnitCircle.normalized * meteorSpawnMaxRandomPosition;
+            Vector3 spawnPosition = spawnpoint.position + new Vector3(rDelta.x, 0, rDelta.y);
+            Meteor meteor = Instantiate(meteorPrefab, spawnPosition + -spawnpoint.forward * meteorSpawnBackDistance, Quaternion.Euler(angles)).GetComponent<Meteor>();
             meteor.Initialize(meteorSpawnpoints[spawnIndex].forward);
             spawns.RemoveAt(spawnIndex);
         }
@@ -166,7 +181,8 @@ public class GameManager : MonoBehaviour {
             if (spawns.Count == 0) break;
             int spawnIndex = Random.Range(0, spawns.Count);
             Transform spawnpoint = pinSpawnpoints[spawnIndex];
-            Instantiate(pinPrefab, spawnpoint.position, spawnpoint.rotation);
+            Quaternion spawnRotation = spawnpoint.rotation * Quaternion.AngleAxis(Random.Range(-pinSpawnMaxRandomAngle / 2, pinSpawnMaxRandomAngle / 2), Vector3.up);
+            Instantiate(pinPrefab, spawnpoint.position, spawnRotation);
             spawns.RemoveAt(spawnIndex);
         }
     }
@@ -196,7 +212,9 @@ public class GameManager : MonoBehaviour {
             int spawnIndex = Random.Range(0, spawns.Count);
             Vector3 angles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
             Transform spawnpoint = spawns[spawnIndex];
-            GameObject coin = Instantiate(coinPrefab, spawnpoint.position, Quaternion.Euler(angles));
+            Vector2 rDelta = Random.insideUnitCircle.normalized * coinSpawnMaxRandomPosition;
+            Vector3 spawnPosition = spawnpoint.position + new Vector3(rDelta.x, 0, rDelta.y);
+            GameObject coin = Instantiate(coinPrefab, spawnPosition, Quaternion.Euler(angles));
             coin.GetComponent<Rigidbody>().angularVelocity = Random.onUnitSphere * coinSpawnAngularSpeed;
             spawns.RemoveAt(spawnIndex);
         }
