@@ -21,7 +21,7 @@ public class PlayerMaterials : MonoBehaviour {
     }
 
     private void Start() {
-        _renderer.material = playerMaterials[player.PlayerIndex];
+        _renderer.sharedMaterial = playerMaterials[player.PlayerIndex];
         outline.OutlineColor = playerOutlineColors[player.PlayerIndex];
     }
 

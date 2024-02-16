@@ -37,7 +37,7 @@ public class EndPlayer : MonoBehaviour {
             return;
         }
 
-        _renderer.material = endPlayerMaterials[endManager.GetWinner(endPlayerIndex)];
+        _renderer.sharedMaterial = endPlayerMaterials[endManager.GetWinner(endPlayerIndex)];
 
         if (endPlayerIndex == 0) {
             if (Random.Range(0, 2) == 0) {

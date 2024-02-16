@@ -302,7 +302,7 @@ MonoBehaviour:
     randomPitchVariation: 0
   - clip: {fileID: 8300000, guid: e9dda956d445399408ec84f35c2566a4, type: 3}
     volume: 1
-    randomPitchVariation: 0
+    randomPitchVariation: 0.195
   hitInvincibilityDelay: 0.1
 --- !u!114 &2133795424575179326
 MonoBehaviour:

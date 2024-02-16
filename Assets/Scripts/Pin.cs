@@ -18,8 +18,12 @@ public class Pin : MonoBehaviour {
     [SerializeField]
     private int maxAllowedPins;
 
+    [SerializeField]
+    private Material[] pinMaterials;
+
     private Rigidbody _rigidbody;
     private Collider _collider;
+    private Renderer _renderer;
 
     private GameObject follow;
 
@@ -33,9 +37,11 @@ public class Pin : MonoBehaviour {
         }
         _rigidbody = GetComponent<Rigidbody>();
         _collider = GetComponentInChildren<Collider>();
+        _renderer = GetComponentInChildren<Renderer>();
     }
 
     private IEnumerator Start() {
+        _renderer.sharedMaterial = Instantiate(pinMaterials[Random.Range(0, pinMaterials.Length)]);
         initialRotation = transform.rotation;
         yield return new WaitForSeconds(destroyAfterIfNoHit);
         if (!_rigidbody.isKinematic) {
