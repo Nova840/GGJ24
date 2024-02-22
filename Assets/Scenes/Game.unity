@@ -7472,7 +7472,7 @@ GameObject:
   - component: {fileID: 1336735776}
   - component: {fileID: 1336735777}
   m_Layer: 0
-  m_Name: Camera Point
+  m_Name: Camera Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7506,7 +7506,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf756809ccbdb8942bd4a65f7c29cf03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  moveSmoothingSpeed: 1
+  zoomSmoothingSpeed: 1
+  cameraDistanceAtBoundsSize:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 10
+      inSlope: 0.875
+      outSlope: 0.875
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 80
+      value: 80
+      inSlope: 0.875
+      outSlope: 0.875
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  playerTrackingHeight: 2.4
 --- !u!1 &1345161455
 GameObject:
   m_ObjectHideFlags: 0
