@@ -23,6 +23,15 @@ public class PlayerAttack : MonoBehaviour {
     [SerializeField]
     private float attackCooldown;
 
+    [SerializeField]
+    private float attackPhysicsObjectForwardForce;
+
+    [SerializeField]
+    private float attackPhysicsObjectUpwardForce;
+
+    [SerializeField]
+    private float attackPhysicsObjectTorque;
+
     private Player player;
 
     public event Action OnAttack;
@@ -44,11 +53,16 @@ public class PlayerAttack : MonoBehaviour {
         timeLastAttacked = Time.time;
 
         Sound.Play(attackSound);
+        Vector3 halfExtents = new Vector3(
+            attackTrigger.transform.lossyScale.x * attackTrigger.size.x / 2f,
+            attackTrigger.transform.lossyScale.y * attackTrigger.size.z / 2f,
+            attackTrigger.transform.lossyScale.z * attackTrigger.size.z / 2f
+        );
         Collider[] hitColliders = Physics.OverlapBox(
             attackTrigger.transform.position,
-            attackTrigger.transform.lossyScale / 2f,
+            halfExtents,
             attackTrigger.transform.rotation,
-            LayerMask.GetMask("Player", "Attackable"),
+            LayerMask.GetMask("Player", "Attackable", "Kitty"),
             QueryTriggerInteraction.Collide
         );
         bool hitSoundPlayed = false;
@@ -63,6 +77,12 @@ public class PlayerAttack : MonoBehaviour {
                 p.PlayerMove.ApplyHit(p.transform.position - transform.position, attackTilt, attackMove, percentCoinsToLose);
             } else if (c.gameObject.layer == LayerMask.NameToLayer("Attackable")) {
                 c.GetComponent<SpawnOnAttack>().OnAttack();
+            } else if (c.gameObject.layer == LayerMask.NameToLayer("Kitty")) {
+                Rigidbody r = c.GetComponentInParent<Rigidbody>();
+                Vector3 force = attackTrigger.transform.forward * attackPhysicsObjectForwardForce + Vector3.up * attackPhysicsObjectUpwardForce;
+                r.AddForce(force, ForceMode.VelocityChange);
+                Vector3 torque = -Vector3.Cross(attackTrigger.transform.forward, Vector3.up) * attackPhysicsObjectTorque;
+                r.AddTorque(torque, ForceMode.VelocityChange);
             }
         }
         OnAttack?.Invoke();

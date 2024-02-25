@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3478308144443495568}
   - component: {fileID: 2744404562908381714}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3478308144443495568
 Transform:
   m_ObjectHideFlags: 0
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 1597011392162974470}
   - component: {fileID: 2490099519027935659}
   - component: {fileID: -1600083444229073649}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Kitty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b595dc1953102b0489ed9540964eb4e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
   delay: 0.25
   setActive:
   - {fileID: 785461598531615442}
@@ -204,10 +203,70 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: eabba407a92c1b240a194c96b72e4747,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: -7677471772335586173, guid: eabba407a92c1b240a194c96b72e4747,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: -3756473180518285571, guid: eabba407a92c1b240a194c96b72e4747,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: -1688617927700330159, guid: eabba407a92c1b240a194c96b72e4747,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: -1025663018108745142, guid: eabba407a92c1b240a194c96b72e4747,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 65702495048144492, guid: eabba407a92c1b240a194c96b72e4747,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: eabba407a92c1b240a194c96b72e4747,
         type: 3}
       propertyPath: m_Name
       value: kitty
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eabba407a92c1b240a194c96b72e4747,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2891746525080496957, guid: eabba407a92c1b240a194c96b72e4747,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3515717276090252278, guid: eabba407a92c1b240a194c96b72e4747,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5233112405309087440, guid: eabba407a92c1b240a194c96b72e4747,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6335250783087129314, guid: eabba407a92c1b240a194c96b72e4747,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 9013638940889411661, guid: eabba407a92c1b240a194c96b72e4747,
+        type: 3}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
