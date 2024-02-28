@@ -16,6 +16,12 @@ public class Sound {
     [Range(0, 2)]
     public float randomPitchVariation = 0;
 
+    public Sound(AudioClip clip, float volume = 1, float randomPitchVariation = 0) {
+        this.clip = clip;
+        this.volume = volume;
+        this.randomPitchVariation = randomPitchVariation;
+    }
+
     public static void Play(Sound[] sounds) => Play(sounds[Random.Range(0, sounds.Length)]);
     public static void Play(Sound sound) => Play(sound.clip, sound.volume, sound.randomPitchVariation);
     public static void Play(AudioClip clip, float volume = 1, float randomPitchVariation = 0) {
