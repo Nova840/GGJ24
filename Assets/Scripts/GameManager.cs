@@ -120,6 +120,8 @@ public class GameManager : MonoBehaviour {
         foreach (Transform child in meteorSpawnpointsContainer) {
             meteorSpawnpoints.Add(child);
         }
+
+        SceneManager.LoadScene("Arena", LoadSceneMode.Additive);
     }
 
     private void Start() {

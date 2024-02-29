@@ -22,6 +22,14 @@ public class StartManager : MonoBehaviour {
 #endif
         }
 
+        CheckAddPlayers();
+
+        CheckRemovePlayers();
+
+        CheckLoadGame();
+    }
+
+    private void CheckAddPlayers() {
         if (Keyboard.current.spaceKey.wasPressedThisFrame && !GameInfo.PlayerWithInputExists(-1)) {
             GameInfo.SetPlayer(GameInfo.GetNumPlayers(), -1);
         }
@@ -33,35 +41,46 @@ public class StartManager : MonoBehaviour {
                 GameInfo.SetPlayer(GameInfo.GetNumPlayers(), playerInput);
             }
         }
+    }
 
+    private void CheckRemovePlayers() {
         for (int playerIndex = 0; playerIndex < GameInfo.GetNumPlayers(); playerIndex++) {
             int playerInput = (int)GameInfo.GetPlayer(playerIndex);
             if (playerInput == -1) {
                 if (Keyboard.current.bKey.wasPressedThisFrame) {
                     ClearPlayer(playerIndex);
                 }
-                if (Keyboard.current.enterKey.wasPressedThisFrame) {
-                    SceneManager.LoadScene("Game");
-                }
             } else if (playerInput == -2) {
                 if (Keyboard.current.periodKey.wasPressedThisFrame) {
                     ClearPlayer(playerIndex);
-                }
-                if (Keyboard.current.enterKey.wasPressedThisFrame) {
-                    SceneManager.LoadScene("Game");
                 }
             } else {
                 if (Gamepad.all[playerInput].buttonEast.wasPressedThisFrame) {
                     ClearPlayer(playerIndex);
                 }
-                if (Gamepad.all[playerInput].startButton.wasPressedThisFrame) {
-                    SceneManager.LoadScene("Game");
-                }
             }
         }
+    }
 
+    private void CheckLoadGame() {
         for (int playerIndex = 0; playerIndex < GameInfo.GetNumPlayers(); playerIndex++) {
-
+            int playerInput = (int)GameInfo.GetPlayer(playerIndex);
+            if (playerInput == -1) {
+                if (Keyboard.current.enterKey.wasPressedThisFrame) {
+                    SceneManager.LoadScene("Game");
+                    return;
+                }
+            } else if (playerInput == -2) {
+                if (Keyboard.current.enterKey.wasPressedThisFrame) {
+                    SceneManager.LoadScene("Game");
+                    return;
+                }
+            } else {
+                if (Gamepad.all[playerInput].startButton.wasPressedThisFrame) {
+                    SceneManager.LoadScene("Game");
+                    return;
+                }
+            }
         }
     }
 

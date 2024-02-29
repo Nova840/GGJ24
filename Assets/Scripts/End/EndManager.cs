@@ -27,23 +27,30 @@ public class EndManager : MonoBehaviour {
     }
 
     private void Update() {
+        CheckLoadScenes();
+    }
+
+    private void CheckLoadScenes() {
         if (Keyboard.current.escapeKey.wasPressedThisFrame) {
             SceneManager.LoadScene("Start");
+            return;
         }
         for (int i = 0; i < Gamepad.all.Count; i++) {
             if (Gamepad.all[i].selectButton.wasPressedThisFrame) {
                 SceneManager.LoadScene("Start");
+                return;
             }
         }
 
         if (Keyboard.current.enterKey.wasPressedThisFrame) {
             SceneManager.LoadScene("Game");
+            return;
         }
         for (int i = 0; i < Gamepad.all.Count; i++) {
             if (Gamepad.all[i].startButton.wasPressedThisFrame) {
                 SceneManager.LoadScene("Game");
+                return;
             }
         }
     }
-
 }
