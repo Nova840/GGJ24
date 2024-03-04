@@ -120,11 +120,10 @@ public class GameManager : MonoBehaviour {
         foreach (Transform child in meteorSpawnpointsContainer) {
             meteorSpawnpoints.Add(child);
         }
-
-        SceneManager.LoadScene("Arena", LoadSceneMode.Additive);
     }
 
     private void Start() {
+        SceneManager.LoadScene("Arena", LoadSceneMode.Additive);
         ToggleSpeech(false);
         foreach (Speech s in speech) {
             StartCoroutine(SpeechCoroutine(s));
@@ -170,8 +169,7 @@ public class GameManager : MonoBehaviour {
             Transform spawnpoint = meteorSpawnpoints[spawnIndex];
             Vector2 rDelta = Random.insideUnitCircle.normalized * meteorSpawnMaxRandomPosition;
             Vector3 spawnPosition = spawnpoint.position + new Vector3(rDelta.x, 0, rDelta.y);
-            Meteor meteor = Instantiate(meteorPrefab, spawnPosition + -spawnpoint.forward * meteorSpawnBackDistance, Quaternion.Euler(angles)).GetComponent<Meteor>();
-            meteor.Initialize(meteorSpawnpoints[spawnIndex].forward);
+            Ball meteor = Instantiate(meteorPrefab, spawnPosition + -spawnpoint.forward * meteorSpawnBackDistance, Quaternion.Euler(angles)).GetComponent<Ball>();
             spawns.RemoveAt(spawnIndex);
         }
     }
@@ -183,7 +181,7 @@ public class GameManager : MonoBehaviour {
             if (spawns.Count == 0) break;
             int spawnIndex = Random.Range(0, spawns.Count);
             Transform spawnpoint = pinSpawnpoints[spawnIndex];
-            Quaternion spawnRotation = spawnpoint.rotation * Quaternion.AngleAxis(Random.Range(-pinSpawnMaxRandomAngle / 2, pinSpawnMaxRandomAngle / 2), Vector3.up);
+            Quaternion spawnRotation = spawnpoint.rotation * Quaternion.AngleAxis(Random.Range(-pinSpawnMaxRandomAngle / 2f, pinSpawnMaxRandomAngle / 2f), Vector3.up);
             Instantiate(pinPrefab, spawnpoint.position, spawnRotation);
             spawns.RemoveAt(spawnIndex);
         }

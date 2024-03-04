@@ -11,6 +11,7 @@ public class StartManager : MonoBehaviour {
 
     private void Start() {
         GameInfo.SetStartSceneHasLoaded();
+        SceneManager.LoadScene("Arena", LoadSceneMode.Additive);
     }
 
     private void Update() {
