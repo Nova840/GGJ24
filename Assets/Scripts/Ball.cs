@@ -9,13 +9,13 @@ public class Ball : MonoBehaviour {
     private GameObject particlesOnBouncePrefab, particlesOnDestroyPrefab;
 
     [SerializeField]
+    private SphereCollider _collider;
+
+    [SerializeField]
     private float gravity;
 
     [SerializeField]
     private float speedLimit;
-
-    [SerializeField]
-    private float explosionRadius;
 
     [SerializeField]
     private float tilt = .5f;
@@ -78,6 +78,7 @@ public class Ball : MonoBehaviour {
         if (particlesPrefab) {
             Instantiate(particlesPrefab, transform.position, particlesPrefab.transform.rotation);
         }
+        float explosionRadius = _collider.transform.lossyScale.x * _collider.radius;
         bool didHit = Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, explosionRadius, LayerMask.GetMask("Stadium"), QueryTriggerInteraction.Ignore);
         Vector3 overlapPosition = didHit ? hit.point : transform.position;
         Player[] playersHit = Physics.OverlapSphere(overlapPosition, explosionRadius, LayerMask.GetMask("Player")).Select(c => c.GetComponent<Player>()).Where(r => r).ToArray();

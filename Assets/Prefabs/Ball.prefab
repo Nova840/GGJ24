@@ -78,9 +78,9 @@ MonoBehaviour:
     type: 3}
   particlesOnDestroyPrefab: {fileID: 6198845567580109943, guid: 29f4e9c418459644d8b58b1ebccb6e3a,
     type: 3}
+  _collider: {fileID: 2704377568609193373}
   gravity: 5
   speedLimit: Infinity
-  explosionRadius: 4.102142
   tilt: 0.5
   move: 20
   percentCoinsLose: 0.5
