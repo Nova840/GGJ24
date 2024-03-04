@@ -35,10 +35,12 @@ public class PlayerCrown : MonoBehaviour {
     private void Start() {
         crown.SetActive(false);
         GameInfo.OnCoinsChange += OnCoinsChange;
+        player.PlayerMove.OnRespawningChanged += OnRespawningChanged;
     }
 
     private void OnDestroy() {
         GameInfo.OnCoinsChange -= OnCoinsChange;
+        player.PlayerMove.OnRespawningChanged -= OnRespawningChanged;
     }
 
     private void OnCoinsChange(int playerIndex, int coins) {
@@ -60,6 +62,16 @@ public class PlayerCrown : MonoBehaviour {
             SetCrown(false);
         } else {
             SetCrown(playersWithMaxCoins.Contains(player.PlayerIndex));
+        }
+    }
+
+    private void OnRespawningChanged(bool respawning) {
+        if (respawning) {
+            sparklesParticleSystem.Stop();
+        } else {
+            if (crownActive) {
+                sparklesParticleSystem.Play();
+            }
         }
     }
 

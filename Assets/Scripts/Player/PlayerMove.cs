@@ -2,6 +2,7 @@ using Lightbug.CharacterControllerPro.Core;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour {
@@ -10,7 +11,8 @@ public class PlayerMove : MonoBehaviour {
     private Transform rotationPoint;
 
     [SerializeField]
-    private GameObject renderersContainer;
+    private Transform renderersContainer;
+    private Renderer[] renderers;
 
     [SerializeField]
     private float moveSpeed;
@@ -58,11 +60,14 @@ public class PlayerMove : MonoBehaviour {
 
     public event Action OnJump;
 
+    public event Action<bool> OnRespawningChanged;
     public bool Respawning { get; private set; }
     public void SetRespawning() => SetRespawning(true);
     private void SetRespawning(bool respawning) {
         Respawning = respawning;
-        renderersContainer.SetActive(!respawning);
+        foreach (Renderer r in renderers) {
+            r.enabled = !respawning;
+        }
         characterActor.ColliderComponent.enabled = !respawning;
         spotlight.gameObject.SetActive(!respawning);
         if (respawning) {
@@ -73,6 +78,7 @@ public class PlayerMove : MonoBehaviour {
             hitMoveVelocityXZ = Vector3.zero;
             StartCoroutine(SetRespawningCoroutine());
         }
+        OnRespawningChanged?.Invoke(respawning);
     }
     private IEnumerator SetRespawningCoroutine() {
         yield return new WaitForSeconds(respawnDelay);
@@ -84,6 +90,7 @@ public class PlayerMove : MonoBehaviour {
         characterActor = GetComponent<CharacterActor>();
         mainCamera = Camera.main;
         spotlight = GetComponentInChildren<Light>();
+        renderers = renderersContainer.GetComponentsInChildren<Renderer>().Where(r => r is not ParticleSystemRenderer).ToArray();
     }
 
     private void Update() {
@@ -135,7 +142,7 @@ public class PlayerMove : MonoBehaviour {
     public void ApplyHit(Vector3 hitDirection, float rotateStrength, float moveStrength, float percentCoinsToLose) {
         if (Time.time - timeLastHit < hitInvincibilityDelay) return;
         timeLastHit = Time.time;
-        
+
         hitDirection.y = 0;
         hitDirection = hitDirection.normalized;
         if (hitDirection == Vector3.zero) return;
