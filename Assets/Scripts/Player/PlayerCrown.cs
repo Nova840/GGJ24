@@ -8,6 +8,9 @@ public class PlayerCrown : MonoBehaviour {
     private GameObject crown;
 
     [SerializeField]
+    private ParticleSystem sparklesParticleSystem;
+
+    [SerializeField]
     private GameObject droppedCrownPrefab;
 
     [SerializeField, Range(0, 90)]
@@ -73,9 +76,11 @@ public class PlayerCrown : MonoBehaviour {
             rb.AddForce(launchDir * crownLaunchForce, ForceMode.VelocityChange);
             rb.AddTorque(Random.onUnitSphere * crownLaunchTorque, ForceMode.VelocityChange);
             crown.SetActive(false);
+            sparklesParticleSystem.Stop();
         } else if (active && !crownActive) {
             GrowCrown();
             crown.SetActive(true);
+            sparklesParticleSystem.Play();
         }
         crownActive = active;
     }
