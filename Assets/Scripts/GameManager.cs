@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
     private GameObject pinPrefab;
 
     [SerializeField]
-    private GameObject meteorPrefab;
+    private GameObject ballPrefab;
 
     [SerializeField]
     private Transform coinSpawnpointsContainer;
@@ -47,14 +47,11 @@ public class GameManager : MonoBehaviour {
     private float pinSpawnMaxRandomAngle;
 
     [SerializeField]
-    private Transform meteorSpawnpointsContainer;
-    private List<Transform> meteorSpawnpoints = new List<Transform>();
+    private Transform ballSpawnpointsContainer;
+    private List<Transform> ballSpawnpoints = new List<Transform>();
 
     [SerializeField]
-    private float meteorSpawnBackDistance;
-
-    [SerializeField]
-    private float meteorSpawnMaxRandomPosition;
+    private float ballSpawnMaxRandomPosition;
 
     [SerializeField]
     private float totalTime;
@@ -117,8 +114,8 @@ public class GameManager : MonoBehaviour {
         foreach (Transform child in pinSpawnpointsContainer) {
             pinSpawnpoints.Add(child);
         }
-        foreach (Transform child in meteorSpawnpointsContainer) {
-            meteorSpawnpoints.Add(child);
+        foreach (Transform child in ballSpawnpointsContainer) {
+            ballSpawnpoints.Add(child);
         }
     }
 
@@ -130,7 +127,7 @@ public class GameManager : MonoBehaviour {
         }
 
         foreach (Spawn s in spawnCoins) {
-            StartCoroutine(CoinSpawnCoroutine(s));
+            StartCoroutine(SpawnCoinCoroutine(s));
         }
 
         foreach (Spawn s in spawnPins) {
@@ -138,7 +135,7 @@ public class GameManager : MonoBehaviour {
         }
 
         foreach (Spawn s in spawnMeteors) {
-            StartCoroutine(SpawnMeteorCoroutine(s));
+            StartCoroutine(SpawnBallCoroutine(s));
         }
 
         SpawnPlayers();
@@ -159,17 +156,17 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private IEnumerator SpawnMeteorCoroutine(Spawn spawn) {
+    private IEnumerator SpawnBallCoroutine(Spawn spawn) {
         yield return new WaitForSeconds(spawn.time);
-        List<Transform> spawns = new List<Transform>(meteorSpawnpoints);
+        List<Transform> spawns = new List<Transform>(ballSpawnpoints);
         for (int i = 0; i < spawn.amount; i++) {
             if (spawns.Count == 0) break;
             int spawnIndex = Random.Range(0, spawns.Count);
             Vector3 angles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
-            Transform spawnpoint = meteorSpawnpoints[spawnIndex];
-            Vector2 rDelta = Random.insideUnitCircle.normalized * meteorSpawnMaxRandomPosition;
+            Transform spawnpoint = ballSpawnpoints[spawnIndex];
+            Vector2 rDelta = Random.insideUnitCircle.normalized * ballSpawnMaxRandomPosition;
             Vector3 spawnPosition = spawnpoint.position + new Vector3(rDelta.x, 0, rDelta.y);
-            Ball meteor = Instantiate(meteorPrefab, spawnPosition + -spawnpoint.forward * meteorSpawnBackDistance, Quaternion.Euler(angles)).GetComponent<Ball>();
+            Instantiate(ballPrefab, spawnPosition, Quaternion.Euler(angles)).GetComponent<Ball>();
             spawns.RemoveAt(spawnIndex);
         }
     }
@@ -204,7 +201,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private IEnumerator CoinSpawnCoroutine(Spawn spawn) {
+    private IEnumerator SpawnCoinCoroutine(Spawn spawn) {
         yield return new WaitForSeconds(spawn.time);
         List<Transform> spawns = new List<Transform>(coinSpawnpoints);
         for (int i = 0; i < spawn.amount; i++) {
