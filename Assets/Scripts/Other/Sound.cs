@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
+[IncludeInSettings(true)]
 [Serializable]
 public class Sound {
 
