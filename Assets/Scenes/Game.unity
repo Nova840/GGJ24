@@ -4901,7 +4901,7 @@ PrefabInstance:
     - target: {fileID: 4224623042130381142, guid: b91550c8a3504e044b40d79164071c06,
         type: 3}
       propertyPath: m_Name
-      value: Spinning Bar 2 (1)
+      value: Spinning Bar (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6796550244785674246, guid: b91550c8a3504e044b40d79164071c06,
         type: 3}
@@ -4999,13 +4999,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4224623042130381142, guid: b91550c8a3504e044b40d79164071c06,
         type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4224623042130381142, guid: b91550c8a3504e044b40d79164071c06,
-        type: 3}
       propertyPath: m_Name
-      value: Spinning Bar 2
+      value: Spinning Bar
       objectReference: {fileID: 0}
     - target: {fileID: 6796550244785674246, guid: b91550c8a3504e044b40d79164071c06,
         type: 3}
