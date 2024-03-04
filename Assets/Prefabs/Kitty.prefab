@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3478308144443495568}
   - component: {fileID: 2744404562908381714}
-  - component: {fileID: 4440533059228364114}
   m_Layer: 14
   m_Name: Collider
   m_TagString: Untagged
@@ -50,32 +49,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.5, y: 1.2609938, z: 1.9925681}
   m_Center: {x: 0, y: 0.1225881, z: -0.25506216}
---- !u!64 &4440533059228364114
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 785461598531615442}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &7922522647152635190
 GameObject:
   m_ObjectHideFlags: 0

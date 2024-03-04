@@ -44,10 +44,20 @@ public class CameraManager : MonoBehaviour {
             return transform.InverseTransformPoint(position);
         }
 
-        Bounds bounds = new Bounds(GetPlayerRelativePosition(players[0]), Vector3.zero);
-        for (int i = 1; i < players.Count; i++) {
-            Vector3 relativePos = GetPlayerRelativePosition(players[i]);
-            bounds.Encapsulate(relativePos);
+        List<Vector3> relativePositions = new List<Vector3>();
+
+        for (int i = 0; i < players.Count; i++) {
+            if (players[i].PlayerMove.Respawning) continue;
+            relativePositions.Add(GetPlayerRelativePosition(players[i]));
+        }
+
+        if (relativePositions.Count == 0) {
+            return new Bounds(Vector3.zero, Vector3.zero);
+        }
+
+        Bounds bounds = new Bounds(relativePositions[0], Vector3.zero);
+        for (int i = 1; i < relativePositions.Count; i++) {
+            bounds.Encapsulate(relativePositions[i]);
         }
         return bounds;
     }

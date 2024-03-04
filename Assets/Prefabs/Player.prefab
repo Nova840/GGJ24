@@ -388,7 +388,7 @@ MonoBehaviour:
   fallCoinLaunchSpeed: 10
   coinLaunchAngularSpeed: 10
   coinLaunchInterval: 0.25
-  killYDepth: -2
+  killYDepth: 0.5
   percentCoinsToLoseByFall: 0.5
 --- !u!114 &4607224511747664787
 MonoBehaviour:
