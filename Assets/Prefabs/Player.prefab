@@ -5183,11 +5183,11 @@ MonoBehaviour:
   attackTilt: 0.5
   attackMove: 20
   percentCoinsToLose: 0.25
-  attackSound:
+  missSound:
     clip: {fileID: 8300000, guid: 3f95a0f10a294e347a5e6753cbc37084, type: 3}
     volume: 1
     randomPitchVariation: 0.1
-  attackHitSound:
+  hitSound:
     clip: {fileID: 8300000, guid: 579b6aa6de9a5984094013d9518cde94, type: 3}
     volume: 1
     randomPitchVariation: 0.1

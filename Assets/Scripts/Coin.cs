@@ -22,6 +22,9 @@ public class Coin : MonoBehaviour {
     [SerializeField]
     private Sound[] coinBounceSounds;
 
+    [SerializeField]
+    private float coinDestroyHeight;
+
     private int playerIndex = -1;//-1 means environment spawned it
 
     private float timeCreated;
@@ -43,7 +46,7 @@ public class Coin : MonoBehaviour {
     }
 
     private void Update() {
-        if (transform.position.y <= -1000) {
+        if (transform.position.y <= coinDestroyHeight) {
             Destroy(gameObject);
         }
     }

@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour {
     private float percentCoinsToLose;
 
     [SerializeField]
-    private Sound attackSound, attackHitSound;
+    private Sound missSound, hitSound;
 
     [SerializeField]
     private float attackCooldown;
@@ -52,7 +52,6 @@ public class PlayerAttack : MonoBehaviour {
         if (Time.time - timeLastAttacked < attackCooldown) return;
         timeLastAttacked = Time.time;
 
-        Sound.Play(attackSound);
         Vector3 halfExtents = new Vector3(
             attackTrigger.transform.lossyScale.x * attackTrigger.size.x / 2f,
             attackTrigger.transform.lossyScale.y * attackTrigger.size.z / 2f,
@@ -65,26 +64,26 @@ public class PlayerAttack : MonoBehaviour {
             LayerMask.GetMask("Player", "Attackable", "Kitty"),
             QueryTriggerInteraction.Collide
         );
-        bool hitSoundPlayed = false;
+        bool hitSoundShouldPlay = false;
         foreach (Collider c in hitColliders) {
             if (c.gameObject.layer == LayerMask.NameToLayer("Player") && !c.isTrigger) {
                 Player p = c.GetComponent<Player>();
                 if (p && p == player) continue;
-                if (!hitSoundPlayed) {
-                    Sound.Play(attackHitSound);
-                    hitSoundPlayed = true;
-                }
                 p.PlayerMove.ApplyHit(p.transform.position - transform.position, attackTilt, attackMove, percentCoinsToLose);
+                hitSoundShouldPlay = true;
             } else if (c.gameObject.layer == LayerMask.NameToLayer("Attackable")) {
                 c.GetComponent<SpawnOnAttack>().OnAttack();
+                hitSoundShouldPlay = true;
             } else if (c.gameObject.layer == LayerMask.NameToLayer("Kitty")) {
                 Rigidbody r = c.GetComponentInParent<Rigidbody>();
                 Vector3 force = attackTrigger.transform.forward * attackPhysicsObjectForwardForce + Vector3.up * attackPhysicsObjectUpwardForce;
                 r.AddForce(force, ForceMode.VelocityChange);
                 Vector3 torque = -Vector3.Cross(attackTrigger.transform.forward, Vector3.up) * attackPhysicsObjectTorque;
                 r.AddTorque(torque, ForceMode.VelocityChange);
+                hitSoundShouldPlay = true;
             }
         }
+        Sound.Play(hitSoundShouldPlay ? hitSound : missSound);
         OnAttack?.Invoke();
     }
 

@@ -1590,7 +1590,7 @@ MonoBehaviour:
   ballPrefab: {fileID: 2789351301182448181, guid: 8929d038a3f1fff47902f89139b02c00,
     type: 3}
   coinSpawnpointsContainer: {fileID: 1741974627}
-  coinSpawnMaxRandomPosition: 5
+  coinSpawnMaxRandomPosition: 2
   playerSpawnpointsContainer: {fileID: 179021902}
   playerSpawnMaxRandomPosition: 1
   pinSpawnpointsContainer: {fileID: 1267635265}
@@ -1939,8 +1939,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472880541}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.09997191, y: 0.20357147, z: -0.020891353, w: -0.9737186}
-  m_LocalPosition: {x: 111.1049, y: 61.14231, z: 728.81165}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
