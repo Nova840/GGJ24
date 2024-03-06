@@ -9,10 +9,13 @@ public class CoinText : MonoBehaviour {
     [SerializeField, Range(0, 3)]
     private int playerIndex;
 
+    [SerializeField]
+    private float spacing;
+
     private TMP_Text text;
 
     private void Awake() {
-        text = GetComponent<TMP_Text>();
+        text = GetComponentInChildren<TMP_Text>();
         GameInfo.OnCoinsChange += OnCoinsChange;
     }
 
@@ -22,6 +25,9 @@ public class CoinText : MonoBehaviour {
 
     private void Start() {
         UpdateText();
+        RectTransform rt = GetComponent<RectTransform>();
+        float xPosition = (playerIndex - (GameInfo.GetMaxPlayers() - 1) / 2f) * spacing + (GameInfo.GetMaxPlayers() - GameInfo.GetNumPlayers()) * (spacing / 2f);
+        rt.anchoredPosition = new Vector2(xPosition, rt.anchoredPosition.y);
     }
 
     private void OnCoinsChange(int playerIndex, int coins) {
@@ -31,10 +37,14 @@ public class CoinText : MonoBehaviour {
     }
 
     private void UpdateText() {
-        if (GameInfo.GetPlayer(playerIndex) != null) {
+        bool playerExists = GameInfo.GetPlayer(playerIndex) != null;
+        if (playerExists) {
             text.text = $"Player {playerIndex + 1}: {GameInfo.GetCoins(playerIndex)}";
         } else {
             text.text = "";
+        }
+        if (gameObject.activeInHierarchy != playerExists) {
+            gameObject.SetActive(playerExists);
         }
     }
 

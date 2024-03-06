@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartPlayer : MonoBehaviour {
 
@@ -10,9 +11,11 @@ public class StartPlayer : MonoBehaviour {
     private int playerIndex;
 
     private TMP_Text text;
+    private Image backgroundImage;
 
     private void Awake() {
         text = GetComponentInChildren<TMP_Text>();
+        backgroundImage = GetComponent<Image>();
         GameInfo.OnPlayerChange += OnPlayerChange;
     }
 
@@ -51,6 +54,7 @@ public class StartPlayer : MonoBehaviour {
     private void SetText(string text) {
         this.text.text = text;
         this.text.gameObject.SetActive(this.text.text != "");
+        backgroundImage.enabled = this.text.text != "";
     }
 
 }
