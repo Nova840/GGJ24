@@ -290,7 +290,6 @@ GameObject:
   - component: {fileID: 120715169}
   - component: {fileID: 120715172}
   - component: {fileID: 120715171}
-  - component: {fileID: 120715170}
   m_Layer: 5
   m_Name: Time
   m_TagString: Untagged
@@ -317,22 +316,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 100, y: -100}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 100, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &120715170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 120715168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 785e68bfeda8a6d4ea89833b03fe0d1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerIndex: 3
-  spacing: 0
 --- !u!114 &120715171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5633,7 +5618,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Time Text
+  m_text: X:XX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2a4dcd957c564cdb91cb66e16da46e7, type: 2}
   m_sharedMaterial: {fileID: 5241669458305786417, guid: f2a4dcd957c564cdb91cb66e16da46e7,
