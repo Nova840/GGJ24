@@ -84,7 +84,7 @@ MonoBehaviour:
   tilt: 0.5
   move: 20
   percentCoinsLose: 0.5
-  hitGroundSound:
+  hitGroundSounds:
   - clip: {fileID: 8300000, guid: b216cebe6ea6a7a42ba26d2c9859c7d2, type: 3}
     volume: 0.5
     randomPitchVariation: 0.3
@@ -94,7 +94,7 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: c3d7db684d1362345a950b4e2d0ab973, type: 3}
     volume: 0.5
     randomPitchVariation: 0.3
-  hitGroundDestroySound:
+  hitGroundDestroySounds:
   - clip: {fileID: 8300000, guid: 59bc66a8c7536dd4cb4c6422aa553b3b, type: 3}
     volume: 0.5
     randomPitchVariation: 0.3

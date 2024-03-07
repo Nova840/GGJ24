@@ -27,7 +27,7 @@ public class Ball : MonoBehaviour {
     private float percentCoinsLose = .5f;
 
     [SerializeField]
-    private Sound[] hitGroundSound, hitGroundDestroySound;
+    private Sound[] hitGroundSounds, hitGroundDestroySounds;
 
     [SerializeField]
     private float minRotateSpeeed, maxRotateSpeeed;
@@ -64,13 +64,13 @@ public class Ball : MonoBehaviour {
         bounces++;
 
         if (bounces < bouncesToDestroy) {
-            Hit(particlesOnBouncePrefab, hitGroundSound, false);
+            Hit(particlesOnBouncePrefab, hitGroundSounds, false);
             Vector3 bounceVelocity = Vector3.up * Mathf.Sqrt(2 * gravity * bounceHeight);
             Vector2 randomInsideCircle = Random.insideUnitCircle;
             bounceVelocity += new Vector3(randomInsideCircle.x, 0, randomInsideCircle.y) * bounceRandomHorizontalVelocity;
             _rigidbody.velocity = bounceVelocity;
         } else {
-            Hit(particlesOnDestroyPrefab, hitGroundDestroySound, true);
+            Hit(particlesOnDestroyPrefab, hitGroundDestroySounds, true);
         }
     }
 
