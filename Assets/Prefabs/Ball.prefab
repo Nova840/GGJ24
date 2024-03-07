@@ -85,13 +85,13 @@ MonoBehaviour:
   move: 20
   percentCoinsLose: 0.5
   hitGroundSound:
-    clip: {fileID: 8300000, guid: 9e1dfd9ca0a121c429b562dc532d6f71, type: 3}
+  - clip: {fileID: 8300000, guid: 9e1dfd9ca0a121c429b562dc532d6f71, type: 3}
     volume: 1
-    randomPitchVariation: 0.1
+    randomPitchVariation: 0
   hitGroundDestroySound:
-    clip: {fileID: 8300000, guid: 9e1dfd9ca0a121c429b562dc532d6f71, type: 3}
+  - clip: {fileID: 8300000, guid: 9e1dfd9ca0a121c429b562dc532d6f71, type: 3}
     volume: 1
-    randomPitchVariation: 0.1
+    randomPitchVariation: 0
   minRotateSpeeed: 0.5
   maxRotateSpeeed: 2
   bouncesToDestroy: 2

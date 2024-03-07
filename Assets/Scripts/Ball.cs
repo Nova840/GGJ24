@@ -27,7 +27,7 @@ public class Ball : MonoBehaviour {
     private float percentCoinsLose = .5f;
 
     [SerializeField]
-    private Sound hitGroundSound, hitGroundDestroySound;
+    private Sound[] hitGroundSound, hitGroundDestroySound;
 
     [SerializeField]
     private float minRotateSpeeed, maxRotateSpeeed;
@@ -74,7 +74,7 @@ public class Ball : MonoBehaviour {
         }
     }
 
-    private void Hit(GameObject particlesPrefab, Sound sound, bool destroy) {
+    private void Hit(GameObject particlesPrefab, Sound[] sound, bool destroy) {
         if (particlesPrefab) {
             Instantiate(particlesPrefab, transform.position, particlesPrefab.transform.rotation);
         }
