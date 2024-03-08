@@ -19,16 +19,23 @@ public class ObstacleCollider : MonoBehaviour {
     private Collider[] obstacleColliders;
 
     private Rigidbody _rigidbody;
+    private RotatingObstacle rotatingObstacle;
 
     private void Awake() {
         _rigidbody = GetComponentInParent<Rigidbody>();
+        rotatingObstacle = GetComponent<RotatingObstacle>();
     }
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.collider.gameObject.layer != LayerMask.NameToLayer("Player")) return;
         if (!obstacleColliders.Contains(collision.GetContact(0).thisCollider)) return;
         Player player = collision.collider.GetComponent<Player>();
-        Vector3 direction = _rigidbody.GetPointVelocity(collision.GetContact(0).point);
+        Vector3 direction;
+        if (rotatingObstacle) {
+            direction = rotatingObstacle.GetPointVelocity(collision.GetContact(0).point);
+        } else {
+            direction = _rigidbody.GetPointVelocity(collision.GetContact(0).point);
+        }
         player.PlayerMove.ApplyHit(direction, tilt, move, percentCoinsToLose);
     }
 
