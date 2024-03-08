@@ -59,7 +59,7 @@ public class Ball : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.isTrigger || other.GetComponent<Ball>()) return;
+        if (other.isTrigger) return;
 
         bounces++;
 

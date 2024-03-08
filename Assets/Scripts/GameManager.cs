@@ -117,10 +117,10 @@ public class GameManager : MonoBehaviour {
         foreach (Transform child in ballSpawnpointsContainer) {
             ballSpawnpoints.Add(child);
         }
+        SceneManager.LoadScene("Arena", LoadSceneMode.Additive);
     }
 
     private void Start() {
-        SceneManager.LoadScene("Arena", LoadSceneMode.Additive);
         ToggleSpeech(false);
         foreach (Speech s in speech) {
             StartCoroutine(SpeechCoroutine(s));

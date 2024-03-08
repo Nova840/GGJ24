@@ -9,7 +9,7 @@ using UnityEditor;
 
 public class StartManager : MonoBehaviour {
 
-    private void Start() {
+    private void Awake() {
         GameInfo.SetStartSceneHasLoaded();
         SceneManager.LoadScene("Arena", LoadSceneMode.Additive);
     }

@@ -24,9 +24,6 @@ public class EndManager : MonoBehaviour {
             }
         }
         winners = winners.OrderByDescending(playerIndex => GameInfo.GetCoins(playerIndex)).ToList();
-    }
-
-    private void Start() {
         SceneManager.LoadScene("Arena", LoadSceneMode.Additive);
     }
 
