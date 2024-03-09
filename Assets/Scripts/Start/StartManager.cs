@@ -15,13 +15,7 @@ public class StartManager : MonoBehaviour {
     }
 
     private void Update() {
-        if (Keyboard.current.escapeKey.wasPressedThisFrame) {
-#if UNITY_EDITOR
-            EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
-        }
+        CheckQuitGame();
 
         CheckAddPlayers();
 
@@ -94,6 +88,25 @@ public class StartManager : MonoBehaviour {
                 GameInfo.SetPlayer(i, GameInfo.GetPlayer(i + 1));
             }
         }
+    }
+
+    private void CheckQuitGame() {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame) {
+            QuitGame();
+        }
+        for (int i = 0; i < Gamepad.all.Count; i++) {
+            if (Gamepad.all[i].selectButton.wasPressedThisFrame) {
+                QuitGame();
+            }
+        }
+    }
+
+    private void QuitGame() {
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
     }
 
 }

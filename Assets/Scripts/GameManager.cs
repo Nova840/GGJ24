@@ -224,9 +224,17 @@ public class GameManager : MonoBehaviour {
             OnTimeLeftChange?.Invoke(TimeLeft);
         } else {
             SceneManager.LoadScene("End");
+            return;
         }
         if (Keyboard.current.escapeKey.wasPressedThisFrame) {
             SceneManager.LoadScene("Start");
+            return;
+        }
+        for (int i = 0; i < Gamepad.all.Count; i++) {
+            if (Gamepad.all[i].selectButton.wasPressedThisFrame) {
+                SceneManager.LoadScene("Start");
+                return;
+            }
         }
     }
 
