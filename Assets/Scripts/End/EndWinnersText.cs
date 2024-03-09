@@ -8,6 +8,9 @@ public class EndWinnersText : MonoBehaviour {
     [SerializeField]
     private EndManager endManager;
 
+    [SerializeField]
+    private Color[] textColors;
+
     private TMP_Text text;
 
     private void Awake() {
@@ -17,7 +20,7 @@ public class EndWinnersText : MonoBehaviour {
     private void Start() {
         string s = "";
         endManager.ForEachWinner(playerIndex => {
-            s += $"Player {playerIndex + 1}: {GameInfo.GetCoins(playerIndex)}\n";
+            s += $"<color=#{ColorUtility.ToHtmlStringRGBA(textColors[playerIndex])}>Player {playerIndex + 1}: {GameInfo.GetCoins(playerIndex)}</color>\n";
         });
         s = s.TrimEnd('\n');
         text.text = s;
