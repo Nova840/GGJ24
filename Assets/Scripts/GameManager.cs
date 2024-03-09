@@ -98,10 +98,13 @@ public class GameManager : MonoBehaviour {
     private void Awake() {
         if (!GameInfo.StartSceneHasLoaded) {
             GameInfo.SetPlayer(0, -1);
-        } else {
-            for (int i = 0; i < GameInfo.GetMaxPlayers(); i++) {
-                GameInfo.SetCoins(i, 0);
-            }
+            GameInfo.SetPlayer(1, -1);
+            GameInfo.SetPlayer(2, -1);
+            GameInfo.SetPlayer(3, -1);
+        }
+
+        for (int i = 0; i < GameInfo.GetMaxPlayers(); i++) {
+            GameInfo.SetCoins(i, 0);
         }
 
         TimeLeft = totalTime;

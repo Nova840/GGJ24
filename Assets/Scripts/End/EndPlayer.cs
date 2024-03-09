@@ -6,7 +6,13 @@ using UnityEngine.InputSystem;
 public class EndPlayer : MonoBehaviour {
 
     [SerializeField]
+    private Renderer _renderer;
+
+    [SerializeField]
     private EndManager endManager;
+
+    [SerializeField]
+    private GameObject crown;
 
     [SerializeField, Range(0, 3)]
     private int endPlayerIndex;
@@ -21,14 +27,12 @@ public class EndPlayer : MonoBehaviour {
     private float tauntTransitionDuration;
 
     private Animator animator;
-    private Renderer _renderer;
 
     private bool taunting = false;
     private string animationName;
 
     private void Awake() {
         animator = GetComponentInChildren<Animator>();
-        _renderer = GetComponentInChildren<Renderer>();
     }
 
     private void Start() {
@@ -37,19 +41,25 @@ public class EndPlayer : MonoBehaviour {
             return;
         }
 
-        _renderer.sharedMaterial = endPlayerMaterials[endManager.GetWinner(endPlayerIndex)];
+        int playerIndex = endManager.GetWinner(endPlayerIndex);
+        _renderer.sharedMaterial = endPlayerMaterials[playerIndex];
 
-        if (endPlayerIndex == 0) {
+        int coins = GameInfo.GetCoins(playerIndex);
+        bool wearingCrown = coins == GameInfo.GetCoins(endManager.GetWinner(0)) && coins > 0;
+        crown.SetActive(wearingCrown);
+
+        float normalizedTime = Random.Range(0f, 1f);
+        if (wearingCrown) {
             if (Random.Range(0, 2) == 0) {
                 animationName = "Salsa";
             } else {
                 animationName = "Laugh";
             }
-            animator.Play(animationName, 0, 0);
+            animator.Play(animationName, 0, normalizedTime);
         } else {
             if (gameObject.activeInHierarchy) {
                 animationName = "Defeat";
-                animator.Play(animationName, 0, (float)endPlayerIndex - 1 / endManager.GetNumWinners() - 1);
+                animator.Play(animationName, 0, normalizedTime);
             }
         }
     }
