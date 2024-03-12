@@ -105,7 +105,9 @@ public class StartManager : MonoBehaviour {
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #else
-        Application.Quit();
+        if (Application.platform != RuntimePlatform.WebGLPlayer) {
+            Application.Quit();
+        }
 #endif
     }
 
